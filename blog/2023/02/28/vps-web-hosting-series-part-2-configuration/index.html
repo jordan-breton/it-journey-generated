@@ -1,0 +1,1569 @@
+
+<!DOCTYPE html>
+
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="This website has two purposes: introducing myself and talking about passionating IT-related stuff :)" name="description"/>
+<meta content="Jordan Breton" name="author"/>
+<link href="https://it-journey.com/blog/2023/02/28/vps-web-hosting-series-part-2-configuration/" rel="canonical">
+<link href="../../27/vps-web-hosting-series-part-1-installation/" rel="prev"/>
+<link href="../../../03/01/vps-web-hosting-series-part-3-maintenance-additional-notes/" rel="next"/>
+<link href="../../../../../feed_rss_created.xml" rel="alternate" title="RSS feed" type="application/rss+xml"/>
+<link href="../../../../../feed_rss_updated.xml" rel="alternate" title="RSS feed of updated content" type="application/rss+xml"/>
+<link href="../../../../../assets/images/logo-xs.png" rel="icon"/>
+<meta content="mkdocs-1.4.2, mkdocs-material-9.1.0+insiders-4.32.2" name="generator"/>
+<title>VPS &amp; Web Hosting series part 2: Configuration - IT Journey</title>
+<link href="../../../../../assets/stylesheets/main.24f010b1.min.css" rel="stylesheet"/>
+<link href="../../../../../assets/stylesheets/palette.6932e648.min.css" rel="stylesheet"/>
+
+<link href="../../../../../assets/external/fonts.googleapis.com/css.49ea35f2.css" rel="stylesheet">
+<style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+<link href="../../../../../css/timeago.css" rel="stylesheet"/>
+<link href="../../../../../assets/css/style.css" rel="stylesheet"/>
+<script>__md_scope=new URL("../../../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+<meta content="website" property="og:type"/>
+<meta content="Vps web hosting series part 2 configuration - IT Journey" property="og:title"/>
+<meta content="This website has two purposes: introducing myself and talking about passionating IT-related stuff :)" property="og:description"/>
+<meta content="https://it-journey.com/assets/images/social/blog/posts/vps-web-hosting-series-part-2-configuration.png" property="og:image"/>
+<meta content="image/png" property="og:image:type"/>
+<meta content="1200" property="og:image:width"/>
+<meta content="630" property="og:image:height"/>
+<meta content="https://it-journey.com/blog/2023/02/28/vps-web-hosting-series-part-2-configuration/" property="og:url"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="Vps web hosting series part 2 configuration - IT Journey" name="twitter:title"/>
+<meta content="This website has two purposes: introducing myself and talking about passionating IT-related stuff :)" name="twitter:description"/>
+<meta content="https://it-journey.com/assets/images/social/blog/posts/vps-web-hosting-series-part-2-configuration.png" name="twitter:image"/>
+<!-- RSS Feed -->
+<link href="https://it-journey.com/feed_rss_created.xml" rel="alternate" title="RSS feed of created content" type="application/rss+xml">
+<link href="https://it-journey.com/feed_rss_updated.xml" rel="alternate" title="RSS feed of updated content" type="application/rss+xml">
+<link href="/assets/css/blog/post.css" rel="stylesheet"/>
+<link href="../../../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            
+                .gscrollbar-fixer { padding-right: 15px; }
+                .gdesc-inner { font-size: 0.75rem; }
+                body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+                body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+                body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}
+                </style><script src="../../../../../assets/javascripts/glightbox.min.js"></script></head>
+<body data-md-color-accent="amber" data-md-color-primary="amber" data-md-color-scheme="default" dir="ltr">
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#vps-web-hosting-series-part-2-configuration">
+          Skip to content
+        </a>
+</div>
+<div data-md-component="announce">
+<aside class="md-banner">
+<div class="md-banner__inner md-grid md-typeset">
+            
+            
+👋 I'm <strong>open</strong> for great job opportunities especially in the <strong>cyber-security</strong> field so... if you're interested, don't be shy,
+<a class="md-button md-button--primary" data-md-color-primary="amber" href="/about" title="Contact me!">
+	contact me!
+</a>
+</div>
+</aside>
+</div>
+<header class="md-header" data-md-component="header">
+<nav aria-label="Header" class="md-header__inner md-grid">
+<a aria-label="IT Journey" class="md-header__button md-logo" data-md-component="logo" href="../../../../.." title="IT Journey">
+<img alt="logo" src="../../../../../assets/images/logo-xs.png"/>
+</a>
+<label class="md-header__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"></path></svg>
+</label>
+<div class="md-header__title" data-md-component="header-title">
+<div class="md-header__ellipsis">
+<div class="md-header__topic">
+<span class="md-ellipsis">
+            IT Journey
+          </span>
+</div>
+<div class="md-header__topic" data-md-component="header-topic">
+<span class="md-ellipsis">
+            
+              VPS &amp; Web Hosting series part 2: Configuration
+            
+          </span>
+</div>
+</div>
+</div>
+<form class="md-header__option" data-md-component="palette">
+<input aria-label="Switch to dark mode" class="md-option" data-md-color-accent="amber" data-md-color-media="" data-md-color-primary="amber" data-md-color-scheme="default" id="__palette_0" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_1" hidden="" title="Switch to dark mode">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"></path></svg>
+</label>
+<input aria-label="Switch to bright mode" class="md-option" data-md-color-accent="amber" data-md-color-media="" data-md-color-primary="amber" data-md-color-scheme="slate" id="__palette_1" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_0" hidden="" title="Switch to bright mode">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"></path></svg>
+</label>
+</form>
+<script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+<label class="md-header__button md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"></path></svg>
+</label>
+<div class="md-search" data-md-component="search" role="dialog">
+<label class="md-search__overlay" for="__search"></label>
+<div class="md-search__inner" role="search">
+<form class="md-search__form" name="search">
+<input aria-label="Search" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" name="query" placeholder="Search" required="" spellcheck="false" type="text"/>
+<label class="md-search__icon md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
+</label>
+<nav aria-label="Search" class="md-search__options">
+<a aria-label="Share" class="md-search__icon md-icon" data-clipboard="" data-clipboard-text="" data-md-component="search-share" href="javascript:void(0)" tabindex="-1" title="Share">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"></path></svg>
+</a>
+<button aria-label="Clear" class="md-search__icon md-icon" tabindex="-1" title="Clear" type="reset">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"></path></svg>
+</button>
+</nav>
+<div class="md-search__suggest" data-md-component="search-suggest"></div>
+</form>
+<div class="md-search__output">
+<div class="md-search__scrollwrap" data-md-scrollfix="">
+<div class="md-search-result" data-md-component="search-result">
+<div class="md-search-result__meta">
+            Initializing search
+          </div>
+<ol class="md-search-result__list" role="presentation"></ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="md-header__source">
+<a class="md-source" data-md-component="source" href="https://github.com/jordan-breton/it-journey-sources" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"></path></svg>
+</div>
+<div class="md-source__repository">
+    IT Journey (Mirror)
+  </div>
+</a>
+</div>
+</nav>
+</header>
+<div class="md-container" data-md-component="container">
+<nav aria-label="Tabs" class="md-tabs" data-md-component="tabs">
+<div class="md-grid">
+<ul class="md-tabs__list">
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../../..">
+        
+  
+    
+  
+  Home
+
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../../../about/">
+          
+  
+    
+  
+  About
+
+        </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link md-tabs__link--active" href="../../../../">
+          
+  
+    
+  
+  Blog
+
+        </a>
+</li>
+</ul>
+</div>
+</nav>
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden="">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Navigation" class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="IT Journey" class="md-nav__button md-logo" data-md-component="logo" href="../../../../.." title="IT Journey">
+<img alt="logo" src="../../../../../assets/images/logo-xs.png"/>
+</a>
+    IT Journey
+  </label>
+<div class="md-nav__source">
+<a class="md-source" data-md-component="source" href="https://github.com/jordan-breton/it-journey-sources" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"></path></svg>
+</div>
+<div class="md-source__repository">
+    IT Journey (Mirror)
+  </div>
+</a>
+</div>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../..">
+<span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_2" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../../../about/">
+<span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_2">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_2_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_2">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    About
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../../about/skill-set/">
+<span class="md-ellipsis">
+    
+  
+    Skills
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../../about/roadmap/">
+<span class="md-ellipsis">
+    
+  
+    Certifications Roadmap
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../../about/history/">
+<span class="md-ellipsis">
+    
+  
+    History
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_3" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../../">
+<span class="md-ellipsis">
+    
+  
+    Blog
+  
+
+    
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="true" aria-labelledby="__nav_3_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_3">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Blog
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--section md-nav__item--nested">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_3_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    Archive
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_2_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_3_2">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Archive
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../archive/2023/">
+<span class="md-ellipsis">
+<span class="md-typeset">
+      2023
+    </span>
+</span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--section md-nav__item--nested">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_3_3" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    Categories
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_3_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_3_3">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Categories
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../category/bare-metal/">
+<span class="md-ellipsis">
+<span class="md-typeset">
+      Bare metal
+    </span>
+</span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../category/dev-environment/">
+<span class="md-ellipsis">
+<span class="md-typeset">
+      Dev environment
+    </span>
+</span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../category/dev/">
+<span class="md-ellipsis">
+<span class="md-typeset">
+      Dev
+    </span>
+</span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../category/hosting/">
+<span class="md-ellipsis">
+<span class="md-typeset">
+      Hosting
+    </span>
+</span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../category/meta/">
+<span class="md-ellipsis">
+<span class="md-typeset">
+      Meta
+    </span>
+</span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../category/nodejs/">
+<span class="md-ellipsis">
+<span class="md-typeset">
+      NodeJS
+    </span>
+</span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../category/personal-project/">
+<span class="md-ellipsis">
+<span class="md-typeset">
+      Personal project
+    </span>
+</span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../category/personal/">
+<span class="md-ellipsis">
+<span class="md-typeset">
+      Personal
+    </span>
+</span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../category/ssl/">
+<span class="md-ellipsis">
+<span class="md-typeset">
+<abbr title="Secure Sockets Layer">SSL</abbr>
+</span>
+</span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../category/sysadmin/">
+<span class="md-ellipsis">
+<span class="md-typeset">
+      Sysadmin
+    </span>
+</span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../category/test-environment/">
+<span class="md-ellipsis">
+<span class="md-typeset">
+      Test environment
+    </span>
+</span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../category/uwebsocketsjs/">
+<span class="md-ellipsis">
+<span class="md-typeset">
+      uWebSockets.js
+    </span>
+</span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content md-content--post" data-md-component="content">
+<div class="md-sidebar md-sidebar--post" data-md-component="sidebar" data-md-type="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner md-post">
+<nav class="md-nav">
+<div class="md-post__back">
+<div class="md-nav__title md-nav__container">
+<a class="md-nav__link" href="../../../../">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
+<span class="md-ellipsis">
+                    Back to index
+                  </span>
+</a>
+</div>
+</div>
+<div class="md-post__authors md-typeset">
+<div class="md-profile md-post__profile">
+<span class="md-author md-author--long">
+<img alt="Jordan Breton" src="/assets/images/avatar.jpg"/>
+</span>
+<span class="md-profile__description">
+<strong>Jordan Breton</strong><br/>
+                      Creator
+                    </span>
+</div>
+</div>
+<ul class="md-post__meta md-nav__list">
+<li class="md-nav__item md-nav__title">
+<div class="md-nav__link">
+<span class="md-ellipsis">
+                    Metadata
+                  </span>
+</div>
+</li>
+<li class="md-nav__item">
+<div class="md-nav__link">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5v-5Z"></path></svg>
+<time class="md-ellipsis" datetime="2023-02-28 00:00:00">February 28, 2023</time>
+</div>
+</li>
+<li class="md-nav__item">
+<div class="md-nav__link">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9 3v15h3V3H9m3 2 4 13 3-1-4-13-3 1M5 5v13h3V5H5M3 19v2h18v-2H3Z"></path></svg>
+<span class="md-ellipsis">
+                      in
+                      
+                        <a href="../../../../category/bare-metal/">Bare metal</a>, 
+                        <a href="../../../../category/hosting/">Hosting</a>, 
+                        <a href="../../../../category/sysadmin/">Sysadmin</a></span>
+</div>
+</li>
+<li class="md-nav__item">
+<div class="md-nav__link">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7h1.5Z"></path></svg>
+<span class="md-ellipsis">
+                      
+                        13 min read
+                      
+                    </span>
+</div>
+</li>
+</ul>
+<ul class="md-nav__list">
+<li class="md-nav__item md-nav__title">
+<div class="md-nav__link">
+<span class="md-ellipsis">
+                      Related links
+                    </span>
+</div>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../27/vps-web-hosting-series-part-1-installation/">
+<span class="md-ellipsis">
+    
+  
+    Part 1: Installation
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../03/01/vps-web-hosting-series-part-3-maintenance-additional-notes/">
+<span class="md-ellipsis">
+    
+  
+    Part 3: Maintenance &amp; Additional Notes
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+<nav aria-label="Summary" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Summary
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#configuration">
+<span class="md-ellipsis">
+<span class="md-typeset">
+          Configuration
+        </span>
+</span>
+</a>
+<nav aria-label="Configuration" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#apache2">
+<span class="md-ellipsis">
+<span class="md-typeset">
+          Apache2
+        </span>
+</span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#itrocks">
+<span class="md-ellipsis">
+<span class="md-typeset">
+          ITRocks
+        </span>
+</span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#safe-config-storage">
+<span class="md-ellipsis">
+<span class="md-typeset">
+          Safe config storage
+        </span>
+</span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#systemctl">
+<span class="md-ellipsis">
+<span class="md-typeset">
+          Systemctl
+        </span>
+</span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#logrotate">
+<span class="md-ellipsis">
+<span class="md-typeset">
+          Logrotate
+        </span>
+</span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#certbot">
+<span class="md-ellipsis">
+<span class="md-typeset">
+          Certbot
+        </span>
+</span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#iptables">
+<span class="md-ellipsis">
+<span class="md-typeset">
+          Iptables
+        </span>
+</span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#fail2ban">
+<span class="md-ellipsis">
+<span class="md-typeset">
+          Fail2ban
+        </span>
+</span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<article class="md-content__inner md-typeset">
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="/assets/images/blog/VPS-&amp;-Web-Hosting-series/part-2.jpg"><img alt="How to configure a VPS for web hosting?" class="cover" src="/assets/images/blog/VPS-&amp;-Web-Hosting-series/part-2.jpg"/></a></p>
+<h1 id="vps-web-hosting-series-part-2-configuration"><abbr title="Virtual Private Server">VPS</abbr> &amp; Web Hosting series part 2: Configuration<a class="headerlink" href="#vps-web-hosting-series-part-2-configuration" title="Permanent link">¶</a></h1>
+<p>In the previous part, we presented the project, installed required packages and even pulled the source
+code of our incredible app <strong>ITRocks</strong> into its own folder.</p>
+<p>The thing is... the real work hasn't been done yet. Be sure that serious stuff will happen in this second part, so stay
+with me. This is when it starts to be very interesting! Don't worry, though... it's not that hard, I promise <img alt="😄" class="twemoji" src="../../../../../assets/external/cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f604.svg" title=":smile:"></p>
+<p>We must configure our tools and our <strong><abbr title="Virtual Private Server">VPS</abbr></strong> to put our app in production. So go grab a cup of warm coffee,
+open a new terminal and follow me into that really exciting phase!</p>
+<!-- more -->
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This is the <strong>second</strong> part of a series:</p>
+<ol>
+<li><a href="/blog/2023/02/27/vps-web-hosting-series-part-1-installation/"><abbr title="Virtual Private Server">VPS</abbr> &amp; Web Hosting series part 1: Installation</a></li>
+<li><a class="current-page" href="/blog/2023/02/28/vps-web-hosting-series-part-2-configuration/"><abbr title="Virtual Private Server">VPS</abbr> &amp; Web Hosting series part 2: Configuration</a></li>
+<li><a href="/blog/2023/03/01/vps-web-hosting-series-part-3-maintenance-additional-notes/"><abbr title="Virtual Private Server">VPS</abbr> &amp; Web Hosting series part 3: Maintenance &amp; additional notes</a></li>
+</ol>
+<p>If you didn't read the <a href="/blog/2023/02/27/vps-web-hosting-series-part-1-installation/"><abbr title="Virtual Private Server">VPS</abbr> &amp; Web Hosting series part 1: Installation</a>, considere
+doing it before reading what follows <img alt="😉" class="twemoji" src="../../../../../assets/external/cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f609.svg" title=":wink:"></p>
+</div>
+<h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">¶</a></h2>
+<p>So... let's start to configure <code>apache2</code>, <code>certbot</code>, <code>systemctl</code>, <code>logrotate</code>, <code>iptables</code> and <code>itrocks</code> to get a fully operational production server.</p>
+<p>For security sakes, we will create a specific user and a specific group to restrain our server ability to access the file system:</p>
+<p no-linenums="no-linenums"><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#True-0-1">1</a></span>
+<span class="normal"><a href="#True-0-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="True-0-1" name="True-0-1"></a>sudo<span class="w"> </span>addgroup<span class="w"> </span>itrocks
+<a id="True-0-2" name="True-0-2"></a>sudo<span class="w"> </span>useradd<span class="w"> </span>itrocks<span class="w"> </span>-g<span class="w"> </span>itrocks
+</code></pre></div></td></tr></table></div></p>
+<p>Some permissions must be set up for <code>itrocks</code> to be able to access the folder and run <code>node</code>:</p>
+<p no-linenums="no-linenums"><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#True-1-1">1</a></span>
+<span class="normal"><a href="#True-1-2">2</a></span>
+<span class="normal"><a href="#True-1-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="True-1-1" name="True-1-1"></a><span class="nb">cd</span><span class="w"> </span>~
+<a id="True-1-2" name="True-1-2"></a>chmod<span class="w"> </span>o+x<span class="w"> </span>.
+<a id="True-1-3" name="True-1-3"></a>chmod<span class="w"> </span>o+x<span class="w"> </span>-R<span class="w"> </span>.nvm
+</code></pre></div></td></tr></table></div></p>
+<details class="question">
+<summary>Wait! <code>o+x</code>? Isn't it insecure?</summary>
+<p>The <code>o</code> permission is for <code>others</code> and means literally all the operating system users will be able to <code>execute</code>
+a folder or a file.</p>
+<p><code>nvm</code> installs a NodeJS version in the current user home directory. It doesn't install it globally for all users.
+One of the easiest things to do to make that node version available for everyone is to give everyone the permission to execute it.</p>
+<p>But why? Why do we want other users to be able to run NodeJS?</p>
+<p>For our <code>itrocks</code> user. This user doesn't need any home directory, and we want him to only have access to the <code>/home/ubuntu/ITRocks</code> directory
+and to be able to start the server with the <code>node</code> command. Note that it has no read/write permissions in <code>/home/ubuntu/.nvm</code>,
+only <code>execute</code>.</p>
+</details>
+<div class="admonition warning">
+<p class="admonition-title">If you later install a new version of node using nvm, don't forget to add the <code>o+x</code> permission to the newly installed NodeJS version!</p>
+</div>
+<p>Now, we need to add our main user <code>ubuntu</code> to the newly created group <code>itrocks</code>, because it's <code>ubuntu</code> that will perform updates:</p>
+<p no-linenums="no-linenums"><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#True-2-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="True-2-1" name="True-2-1"></a>sudo<span class="w"> </span>usermod<span class="w"> </span>-aG<span class="w"> </span>itrocks<span class="w"> </span>ubuntu
+</code></pre></div></td></tr></table></div></p>
+<div class="admonition warning">
+<p class="admonition-title">Before continuing, you <ins>MUST</ins> run the <code>exit</code> command and reconnect through <abbr title="Secure Shell">SSH</abbr> for this change to take effects.</p>
+</div>
+<p>For git to automatically set up right permissions/ownership to all files when we pull/checkout, let's create a script in <code>/home/ubuntu/tools</code>:</p>
+<p no-linenums="no-linenums"><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#True-3-1">1</a></span>
+<span class="normal"><a href="#True-3-2">2</a></span>
+<span class="normal"><a href="#True-3-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="True-3-1" name="True-3-1"></a><span class="nb">cd</span><span class="w"> </span>~
+<a id="True-3-2" name="True-3-2"></a>mkdir<span class="w"> </span>tools
+<a id="True-3-3" name="True-3-3"></a>nano<span class="w"> </span>tools/gitHook.sh
+</code></pre></div></td></tr></table></div></p>
+<p>Then, past this content to the editor:</p>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">/home/ubuntu/tools/gitHook.sh</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#True-4-1">1</a></span>
+<span class="normal"><a href="#True-4-2">2</a></span>
+<span class="normal"><a href="#True-4-3">3</a></span>
+<span class="normal"><a href="#True-4-4">4</a></span>
+<span class="normal"><a href="#True-4-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="True-4-1" name="True-4-1"></a><span class="ch">#!/bin/bash</span>
+<a id="True-4-2" name="True-4-2"></a>
+<a id="True-4-3" name="True-4-3"></a><span class="nv">PATH</span><span class="o">=</span><span class="s2">"/home/ubuntu/ITRocks"</span>
+<a id="True-4-4" name="True-4-4"></a>/bin/chmod<span class="w"> </span>-R<span class="w"> </span><span class="m">771</span><span class="w"> </span><span class="s2">"</span><span class="nv">$PATH</span><span class="s2">"</span>
+<a id="True-4-5" name="True-4-5"></a>/bin/chown<span class="w"> </span>-R<span class="w"> </span>:itrocks<span class="w"> </span><span class="s2">"</span><span class="nv">$PATH</span><span class="s2">"</span>
+</code></pre></div></td></tr></table></div>
+<p>Type <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-s">S</kbd></span> to save and <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-x">X</kbd></span> to exit.</p>
+<p>Then give the execution permission to the script:</p>
+<p no-linenums="no-linenums"><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#True-5-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="True-5-1" name="True-5-1"></a>chmod<span class="w"> </span>+x<span class="w"> </span>tools/gitHook.sh
+</code></pre></div></td></tr></table></div></p>
+<p>Now, we will create two hooks in <code>/home/ubuntu/ITRocks/.git/hooks</code> by symlinking our script:</p>
+<p no-linenums="no-linenums"><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#True-6-1">1</a></span>
+<span class="normal"><a href="#True-6-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="True-6-1" name="True-6-1"></a>ln<span class="w"> </span>-s<span class="w"> </span>/home/ubuntu/tools/gitHook.sh<span class="w"> </span>/home/ubuntu/ITRocks/.git/hooks/post-checkout
+<a id="True-6-2" name="True-6-2"></a>ln<span class="w"> </span>-s<span class="w"> </span>/home/ubuntu/tools/gitHook.sh<span class="w"> </span>/home/ubuntu/ITRocks/.git/hooks/post-merge
+</code></pre></div></td></tr></table></div></p>
+<p>Test it by checkout to the <code>main</code> branch and checkout back to the <code>release</code> branch, then use <code>ls</code> to check all files and folders belongs to the <code>itrocks</code> group:</p>
+<p no-linenums="no-linenums"><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#True-7-1">1</a></span>
+<span class="normal"><a href="#True-7-2">2</a></span>
+<span class="normal"><a href="#True-7-3">3</a></span>
+<span class="normal"><a href="#True-7-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="True-7-1" name="True-7-1"></a><span class="nb">cd</span><span class="w"> </span>ITRocks
+<a id="True-7-2" name="True-7-2"></a>git<span class="w"> </span>checkout<span class="w"> </span>main
+<a id="True-7-3" name="True-7-3"></a>git<span class="w"> </span>checkout<span class="w"> </span>release
+<a id="True-7-4" name="True-7-4"></a>ls<span class="w"> </span>-al
+</code></pre></div></td></tr></table></div></p>
+<p>The <code>ls -al</code> command should print something like this:</p>
+<p no-linenums="no-linenums"><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#True-8-1">1</a></span>
+<span class="normal"><a href="#True-8-2">2</a></span>
+<span class="normal"><a href="#True-8-3">3</a></span>
+<span class="normal"><a href="#True-8-4">4</a></span>
+<span class="normal"><a href="#True-8-5">5</a></span>
+<span class="normal"><a href="#True-8-6">6</a></span>
+<span class="normal"><a href="#True-8-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="True-8-1" name="True-8-1"></a>drwxrwx---  8 ubuntu itrocks   4096 Oct 12 17:42 .
+<a id="True-8-2" name="True-8-2"></a>drwxr-x---  9 ubuntu ubuntu    4096 Oct 13 07:20 ..
+<a id="True-8-3" name="True-8-3"></a>drwxrwx---  8 ubuntu itrocks   4096 Oct 13 07:21 .git
+<a id="True-8-4" name="True-8-4"></a>-rwxrwx---  1 ubuntu itrocks     77 Oct 12 17:41 .gitignore
+<a id="True-8-5" name="True-8-5"></a>-rwxrwx---  1 ubuntu itrocks   1814 Oct 12 17:42 package.json
+<a id="True-8-6" name="True-8-6"></a>-rwxrwx---  1 ubuntu itrocks 175160 Oct 12 17:42 package-lock.json
+<a id="True-8-7" name="True-8-7"></a>-rwxrwx---  1 ubuntu itrocks   3896 Oct 12 17:45 index.js
+</code></pre></div></td></tr></table></div></p>
+<h3 id="apache2">Apache2<a class="headerlink" href="#apache2" title="Permanent link">¶</a></h3>
+<p>Let's start by enabling required modules:</p>
+<p no-linenums="no-linenums"><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#True-9-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="True-9-1" name="True-9-1"></a>sudo<span class="w"> </span>a2enmod<span class="w"> </span>proxy<span class="w"> </span>proxy_http<span class="w"> </span>proxy_wstunnel<span class="w"> </span>ssl
+</code></pre></div></td></tr></table></div></p>
+<p>Then, we will create the file <code>/etc/apache2/sites-available/app.itrocks.com.conf</code> :</p>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">/etc/apache2/sites-available/app.itrocks.com.conf</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#True-10-1"> 1</a></span>
+<span class="normal"><a href="#True-10-2"> 2</a></span>
+<span class="normal"><a href="#True-10-3"> 3</a></span>
+<span class="normal"><a href="#True-10-4"> 4</a></span>
+<span class="normal"><a href="#True-10-5"> 5</a></span>
+<span class="normal"><a href="#True-10-6"> 6</a></span>
+<span class="normal"><a href="#True-10-7"> 7</a></span>
+<span class="normal"><a href="#True-10-8"> 8</a></span>
+<span class="normal"><a href="#True-10-9"> 9</a></span>
+<span class="normal"><a href="#True-10-10">10</a></span>
+<span class="normal"><a href="#True-10-11">11</a></span>
+<span class="normal"><a href="#True-10-12">12</a></span>
+<span class="normal"><a href="#True-10-13">13</a></span>
+<span class="normal"><a href="#True-10-14">14</a></span>
+<span class="normal"><a href="#True-10-15">15</a></span>
+<span class="normal"><a href="#True-10-16">16</a></span>
+<span class="normal"><a href="#True-10-17">17</a></span>
+<span class="normal"><a href="#True-10-18">18</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="True-10-1" name="True-10-1"></a><span class="nt">&lt;VirtualHost</span><span class="w"> </span><span class="s">*:80</span><span class="nt">&gt;</span>
+<a id="True-10-2" name="True-10-2"></a><span class="w">        </span><span class="nb">ServerName</span><span class="w"> </span>app.itrocks.com
+<a id="True-10-3" name="True-10-3"></a>
+<a id="True-10-4" name="True-10-4"></a><span class="w">        </span><span class="nb">ProxyRequests</span><span class="w"> </span><span class="k">Off</span>
+<a id="True-10-5" name="True-10-5"></a><span class="w">        </span><span class="nb">ProxyPreserveHost</span><span class="w"> </span><span class="k">On</span>
+<a id="True-10-6" name="True-10-6"></a><span class="w">        </span><span class="nb">ProxyVia</span><span class="w"> </span><span class="k">Full</span>
+<a id="True-10-7" name="True-10-7"></a><span class="w">        </span><span class="nt">&lt;Proxy</span><span class="w"> </span><span class="s">*</span><span class="nt">&gt;</span>
+<a id="True-10-8" name="True-10-8"></a><span class="w">                </span><span class="nb">Require</span><span class="w"> </span><span class="k">all</span><span class="w"> </span>granted
+<a id="True-10-9" name="True-10-9"></a><span class="w">        </span><span class="nt">&lt;/Proxy&gt;</span>
+<a id="True-10-10" name="True-10-10"></a>
+<a id="True-10-11" name="True-10-11"></a><span class="w">        </span><span class="nb">RewriteEngine</span><span class="w"> </span><span class="k">On</span>
+<a id="True-10-12" name="True-10-12"></a><span class="w">        </span><span class="c"># If the client try to connect a WebSocket</span>
+<a id="True-10-13" name="True-10-13"></a><span class="w">        </span><span class="nb">RewriteCond</span><span class="w"> </span>%{HTTP:Upgrade}<span class="w"> </span>=websocket<span class="w"> </span>[NC]
+<a id="True-10-14" name="True-10-14"></a><span class="w">        </span><span class="nb">RewriteRule</span><span class="w"> </span>/(.*)<span class="w">           </span>ws://127.0.0.1:7001/$1<span class="w"> </span>[P,L]
+<a id="True-10-15" name="True-10-15"></a><span class="w">        </span><span class="c"># In any other case, reach the HTTP port</span>
+<a id="True-10-16" name="True-10-16"></a><span class="w">        </span><span class="nb">RewriteCond</span><span class="w"> </span>%{HTTP:Upgrade}<span class="w"> </span>!=websocket<span class="w"> </span>[NC]
+<a id="True-10-17" name="True-10-17"></a><span class="w">        </span><span class="nb">RewriteRule</span><span class="w"> </span>/(.*)<span class="w">           </span>http://127.0.0.1:7000/$1<span class="w"> </span>[P,L]
+<a id="True-10-18" name="True-10-18"></a><span class="nt">&lt;/VirtualHost&gt;</span>
+</code></pre></div></td></tr></table></div>
+<div class="admonition warning">
+<p class="admonition-title">For now, <abbr title="Secure Sockets Layer">SSL</abbr>-related config is ignored, Certbot will edit this file for us. We just need to provide him a working config on an insecure VirtualHost.</p>
+</div>
+<p>Now we want to enable our website:</p>
+<p no-linenums="no-linenums"><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#True-11-1">1</a></span>
+<span class="normal"><a href="#True-11-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="True-11-1" name="True-11-1"></a>sudo<span class="w"> </span>a2ensite<span class="w"> </span>app.itrocks.com.conf
+<a id="True-11-2" name="True-11-2"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>reload<span class="w"> </span>apache2
+</code></pre></div></td></tr></table></div></p>
+<p>But before running Certbot, we need a running server.</p>
+<h3 id="itrocks">ITRocks<a class="headerlink" href="#itrocks" title="Permanent link">¶</a></h3>
+<p>Not only <strong>ITRocks</strong> is an awesome cutting-edge technology with no rival out there, but it follows best practices
+too when it comes to security!</p>
+<p>As such, there is no sensitive configuration information in the git repository. It means that we have to store those configurations
+in a safe place... that will be a <code>conf.env</code> config file.</p>
+<h3 id="safe-config-storage">Safe config storage<a class="headerlink" href="#safe-config-storage" title="Permanent link">¶</a></h3>
+<p>Let's start by creating a folder and our <code>conf.env</code> file in <code>~/.config</code>:</p>
+<p no-linenums="no-linenums"><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#True-12-1">1</a></span>
+<span class="normal"><a href="#True-12-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="True-12-1" name="True-12-1"></a>mkdir ~/.config/itrocks
+<a id="True-12-2" name="True-12-2"></a>nano ~/.config/itrocks/conf.env
+</code></pre></div></td></tr></table></div></p>
+<p>In the editor, we'll paste our configuration:</p>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">~/.config/itrocks/conf.env</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#True-13-1">1</a></span>
+<span class="normal"><a href="#True-13-2">2</a></span>
+<span class="normal"><a href="#True-13-3">3</a></span>
+<span class="normal"><a href="#True-13-4">4</a></span>
+<span class="normal"><a href="#True-13-5">5</a></span>
+<span class="normal"><a href="#True-13-6">6</a></span>
+<span class="normal"><a href="#True-13-7">7</a></span>
+<span class="normal"><a href="#True-13-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="True-13-1" name="True-13-1"></a><span class="na">HTTP_PORT</span><span class="o">=</span><span class="s">7000</span>
+<a id="True-13-2" name="True-13-2"></a><span class="na">HTTP_INTERFACE</span><span class="o">=</span><span class="s">127.0.0.1</span>
+<a id="True-13-3" name="True-13-3"></a><span class="na">WS_PORT</span><span class="o">=</span><span class="s">7001</span>
+<a id="True-13-4" name="True-13-4"></a><span class="na">WS_INTERFACE</span><span class="o">=</span><span class="s">127.0.0.1</span>
+<a id="True-13-5" name="True-13-5"></a><span class="na">MONGO_DB_HOST</span><span class="o">=</span><span class="s">example.mongodb.net</span>
+<a id="True-13-6" name="True-13-6"></a><span class="na">MONGO_DB_PORT</span><span class="o">=</span><span class="s">27017</span>
+<a id="True-13-7" name="True-13-7"></a><span class="na">MONGO_DB_NAME</span><span class="o">=</span><span class="s">itrocks</span>
+<a id="True-13-8" name="True-13-8"></a><span class="na">MONGO_DB_PATH</span><span class="o">=</span><span class="s">DB_PATH="mongodb+srv://itrocks:itrocks@example.mongodb.net/itrocks?retryWrites=true&amp;w=majority"</span>
+</code></pre></div></td></tr></table></div>
+<p>Type <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-s">S</kbd></span> to save and <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-x">X</kbd></span> to exit.</p>
+<p>In order to protect it, we need to set up right permissions:</p>
+<p no-linenums="no-linenums"><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#True-14-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="True-14-1" name="True-14-1"></a>chmod<span class="w"> </span>-R<span class="w"> </span><span class="m">400</span><span class="w"> </span>~/.config/itrocks
+</code></pre></div></td></tr></table></div></p>
+<p>Now, the file belongs to the <code>ubuntu</code> user and is <strong>read only</strong>, so the <code>itrocks</code> user itself can't
+read it. This way, we ensure that even if an exploit can be used in the <strong>ITRocks</strong> app to try to read/change the <code>conf.env</code> file that stores
+sensitive data (credentials, api keys, etc.), it won't be able to access it anyway. </p>
+<p>As a reminder, within our configuration, the <code>itrocks</code> user will only have access to two things:</p>
+<ul>
+<li>The <code>/home/ubuntu/ITRocks</code> folder (recursively) containing sources with <strong>read, write and execute</strong> permissions.</li>
+<li>The <code>/home/ubuntu/.nvm</code> folder (recursively) with only the <strong>execute</strong> permission to be able to run node.</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">About <code>/home/ubuntu/ITRocks</code> permissions</p>
+<p>Since <strong>ITRocks</strong> is fictive, we don't know what it must be able to do with its own source code.</p>
+<p>But as a rule of thumb, it should not be able to write. And if it should be able to read/write files,
+you should provide a working directory path in <code>conf.env</code> file, and set up all permissions to this
+directory somewhere else in the system.</p>
+</div>
+<p>It can work because it's <code>systemd</code> that will read this file and provide declared environment 
+variables to the app. It will read it with <code>root</code> privileges.</p>
+<h3 id="systemctl">Systemctl<a class="headerlink" href="#systemctl" title="Permanent link">¶</a></h3>
+<p>This is a service manager used to manage the lifecycle of our <code>itrocks</code> instance. We will create two files in <code>/etc/systemd/system/</code>:</p>
+<ul>
+<li><code>itrocks@.service</code>: a template unit that will allow us, later, to run multiple instances of <strong>ITRocks</strong> on the same server. When we would need to horizontally scale later.</li>
+<li><code>itrocks.target</code>: the service unit that will decide how much instances to run at a time and manage them for us. Systemd will ensure <strong>ITRocks</strong> is running from the server startup to the server shutdown and relaunch it if it crashes.</li>
+</ul>
+<details class="question">
+<summary>Why not using <code>PM2</code> or <code>nodemon</code> instead ?</summary>
+<p>Some people like to use something like <a href="https://pm2.keymetrics.io/">PM2</a> or <a href="https://nodemon.io/">Nodemon</a> to <em>daemonize</em> a NodeJS application.
+But I'll not stand with them, because I do find them useless. Since we still need
+some init system to make sure they start on boot and restart if they crash. And that's without saying that any init system shipped
+with any Linux distro will give you as many (if not more) features than those <strong>NodeJS</strong> based process managers.</p>
+<p>IMHO, they are a useless additional layer that we should get ride off in a vast majority of use-cases <img alt="😉" class="twemoji" src="../../../../../assets/external/cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f609.svg" title=":wink:"> Keeping our (already) huge
+tech stacks as tiny as possible is probably one of the most underrated efforts in our field nowadays (at least for Web Development).</p>
+<p>That was my 2 cents about it.</p>
+</details>
+<p>Let's start by <code>/etc/systemd/system/itrocks@.service</code>.</p>
+<p>We will need to know the path to the <code>node</code> binaries:</p>
+<p no-linenums="no-linenums"><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#True-15-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="True-15-1" name="True-15-1"></a>which<span class="w"> </span>node
+</code></pre></div></td></tr></table></div></p>
+<p>Should print something like <code>/home/ubuntu/.nvm/versions/node/v18.14.2/bin/node</code>. We will use it to define the first systemctl unit in <code>ExecStart</code>. So, do not forget to replace this path if it is different in your environment.</p>
+<p>Then create the file by typing <code>sudo nano /etc/systemd/system/itrocks@.service</code> and pasting the following content into the editor:</p>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">/etc/systemd/system/itrocks@.service</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#True-16-1"> 1</a></span>
+<span class="normal"><a href="#True-16-2"> 2</a></span>
+<span class="normal"><a href="#True-16-3"> 3</a></span>
+<span class="normal"><a href="#True-16-4"> 4</a></span>
+<span class="normal"><a href="#True-16-5"> 5</a></span>
+<span class="normal"><a href="#True-16-6"> 6</a></span>
+<span class="normal"><a href="#True-16-7"> 7</a></span>
+<span class="normal"><a href="#True-16-8"> 8</a></span>
+<span class="normal"><a href="#True-16-9"> 9</a></span>
+<span class="normal"><a href="#True-16-10">10</a></span>
+<span class="normal"><a href="#True-16-11">11</a></span>
+<span class="normal"><a href="#True-16-12">12</a></span>
+<span class="normal"><a href="#True-16-13">13</a></span>
+<span class="normal"><a href="#True-16-14">14</a></span>
+<span class="normal"><a href="#True-16-15">15</a></span>
+<span class="normal"><a href="#True-16-16">16</a></span>
+<span class="normal"><a href="#True-16-17">17</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="True-16-1" name="True-16-1"></a><span class="k">[Unit]</span>
+<a id="True-16-2" name="True-16-2"></a><span class="na">Description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"ITRocks instance %i"</span>
+<a id="True-16-3" name="True-16-3"></a><span class="na">Requires</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">network.target</span>
+<a id="True-16-4" name="True-16-4"></a><span class="na">After</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">network.target</span>
+<a id="True-16-5" name="True-16-5"></a><span class="na">PartOf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">itrocks.target</span>
+<a id="True-16-6" name="True-16-6"></a>
+<a id="True-16-7" name="True-16-7"></a><span class="k">[Service]</span>
+<a id="True-16-8" name="True-16-8"></a><span class="na">User</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">itrocks</span>
+<a id="True-16-9" name="True-16-9"></a><span class="na">Restart</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">always</span>
+<a id="True-16-10" name="True-16-10"></a><span class="na">WorkingDirectory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">/home/ubuntu/ITRocks</span>
+<a id="True-16-11" name="True-16-11"></a><span class="na">EnvironmentFile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">/home/ubuntu/.config/itrocks/conf.env</span>
+<a id="True-16-12" name="True-16-12"></a><span class="na">ExecStart</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">/home/ubuntu/.nvm/versions/node/v18.14.2/bin/node index</span>
+<a id="True-16-13" name="True-16-13"></a><span class="na">StandardOutput</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">append:/var/log/itrocks.%i.instance.log</span>
+<a id="True-16-14" name="True-16-14"></a><span class="na">StandardError</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">append:/var/log/itrocks.err.%i.instance.log</span>
+<a id="True-16-15" name="True-16-15"></a>
+<a id="True-16-16" name="True-16-16"></a><span class="k">[Install]</span>
+<a id="True-16-17" name="True-16-17"></a><span class="na">WantedBy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">multi-user.target</span>
+</code></pre></div></td></tr></table></div>
+<p>Type <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-s">S</kbd></span> to save and <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-x">X</kbd></span> to exit.</p>
+<p>Then we will create <code>/etc/systemd/system/itrocks.target</code> by typing <code>sudo nano /etc/systemd/system/itrocks.target</code>:</p>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">/etc/systemd/system/itrocks.target</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#True-17-1">1</a></span>
+<span class="normal"><a href="#True-17-2">2</a></span>
+<span class="normal"><a href="#True-17-3">3</a></span>
+<span class="normal"><a href="#True-17-4">4</a></span>
+<span class="normal"><a href="#True-17-5">5</a></span>
+<span class="normal"><a href="#True-17-6">6</a></span>
+<span class="normal"><a href="#True-17-7">7</a></span>
+<span class="normal"><a href="#True-17-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="True-17-1" name="True-17-1"></a><span class="k">[Unit]</span>
+<a id="True-17-2" name="True-17-2"></a><span class="na">Description</span><span class="o">=</span><span class="s">ITRocks instance(s)</span>
+<a id="True-17-3" name="True-17-3"></a><span class="c1"># To add more instances, just add a new service in the list by increasing the service number:</span>
+<a id="True-17-4" name="True-17-4"></a><span class="c1"># Requires=itrocks@1.service itrocks@2.service picakform@3.service ...</span>
+<a id="True-17-5" name="True-17-5"></a><span class="na">Requires</span><span class="o">=</span><span class="s">itrocks@1.service</span>
+<a id="True-17-6" name="True-17-6"></a>
+<a id="True-17-7" name="True-17-7"></a><span class="k">[Install]</span>
+<a id="True-17-8" name="True-17-8"></a><span class="na">WantedBy</span><span class="o">=</span><span class="s">multi-user.target</span>
+</code></pre></div></td></tr></table></div>
+<p>Again, type <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-s">S</kbd></span> to save and <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-x">X</kbd></span> to exit.</p>
+<p>Our services are ready, we just need to activate them:</p>
+<p no-linenums="no-linenums"><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#True-18-1">1</a></span>
+<span class="normal"><a href="#True-18-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="True-18-1" name="True-18-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>itrocks.target
+<a id="True-18-2" name="True-18-2"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>itrocks.target
+</code></pre></div></td></tr></table></div></p>
+<p>To manage ITRocks now, you can:</p>
+<ul>
+<li>run <code>sudo systemctl start itrocks.target</code></li>
+<li>run <code>sudo systemctl status itrocks.target</code></li>
+<li>run <code>sudo systemctl stop itrocks.target</code></li>
+<li>run <code>sudo systemctl restart itrocks.target</code></li>
+</ul>
+<p>But you can also use those commands to manage each instance individually (if there is several instances in the future):</p>
+<ul>
+<li>run <code>sudo systemctl start itrocks@1</code></li>
+<li>run <code>sudo systemctl status itrocks@1</code></li>
+<li>run <code>sudo systemctl stop itrocks@1</code></li>
+<li>run <code>sudo systemctl restart itrocks@1</code></li>
+</ul>
+<h3 id="logrotate">Logrotate<a class="headerlink" href="#logrotate" title="Permanent link">¶</a></h3>
+<p>Logrotate will rotate our logs to compress them and remove them automatically after some delay.</p>
+<p>To configure it, just run:</p>
+<p no-linenums="no-linenums"><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#True-19-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="True-19-1" name="True-19-1"></a>nano<span class="w"> </span>/etc/logrotate.d/itrocks
+</code></pre></div></td></tr></table></div></p>
+<p>And paste the following content in the editor:</p>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">/etc/logrotate.d/itrocks</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#True-20-1">1</a></span>
+<span class="normal"><a href="#True-20-2">2</a></span>
+<span class="normal"><a href="#True-20-3">3</a></span>
+<span class="normal"><a href="#True-20-4">4</a></span>
+<span class="normal"><a href="#True-20-5">5</a></span>
+<span class="normal"><a href="#True-20-6">6</a></span>
+<span class="normal"><a href="#True-20-7">7</a></span>
+<span class="normal"><a href="#True-20-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="True-20-1" name="True-20-1"></a>/var/log/itrocks.*.log {
+<a id="True-20-2" name="True-20-2"></a>       daily
+<a id="True-20-3" name="True-20-3"></a>       rotate 14
+<a id="True-20-4" name="True-20-4"></a>       delaycompress
+<a id="True-20-5" name="True-20-5"></a>       compress
+<a id="True-20-6" name="True-20-6"></a>       notifempty
+<a id="True-20-7" name="True-20-7"></a>       missingok
+<a id="True-20-8" name="True-20-8"></a>}
+</code></pre></div></td></tr></table></div>
+<p>Then, type <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-s">S</kbd></span> to save and <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-x">X</kbd></span> to exit.</p>
+<p>This configuration will rotate itrocks logs daily and keep them 14 days before cleaning them up.</p>
+<h3 id="certbot">Certbot<a class="headerlink" href="#certbot" title="Permanent link">¶</a></h3>
+<p>Now, we want to enable <strong><abbr title="Secure Sockets Layer">SSL</abbr></strong> for our proxy.</p>
+<p>Just run:</p>
+<p no-linenums="no-linenums"><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#True-21-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="True-21-1" name="True-21-1"></a>sudo<span class="w"> </span>certbot<span class="w"> </span>--apache
+</code></pre></div></td></tr></table></div></p>
+<p>Type the maintainer's mail address, select all domains and accepts terms and conditions.</p>
+<p>Once certbot executed, we must edit the <abbr title="Secure Sockets Layer">SSL</abbr> config to ensure our websockets will be proxied too.</p>
+<p>In our case, the apache file was <code>/etc/apache2/sites-available/app.itrocks.com.conf</code>, so Certbot will generate a file named <code>/etc/apache2/sites-available/app.itrocks.com.conf-le-ssl.conf</code>:</p>
+<p no-linenums="no-linenums"><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#True-22-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="True-22-1" name="True-22-1"></a>sudo nano /etc/apache2/sites-available/app.itrocks.com.conf-le-ssl.conf
+</code></pre></div></td></tr></table></div></p>
+<p>You should see something like this:</p>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">/etc/apache2/sites-available/app.itrocks.com.conf-le-ssl.conf</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#True-23-1"> 1</a></span>
+<span class="normal"><a href="#True-23-2"> 2</a></span>
+<span class="normal"><a href="#True-23-3"> 3</a></span>
+<span class="normal"><a href="#True-23-4"> 4</a></span>
+<span class="normal"><a href="#True-23-5"> 5</a></span>
+<span class="normal"><a href="#True-23-6"> 6</a></span>
+<span class="normal"><a href="#True-23-7"> 7</a></span>
+<span class="normal"><a href="#True-23-8"> 8</a></span>
+<span class="normal"><a href="#True-23-9"> 9</a></span>
+<span class="normal"><a href="#True-23-10">10</a></span>
+<span class="normal"><a href="#True-23-11">11</a></span>
+<span class="normal"><a href="#True-23-12">12</a></span>
+<span class="normal"><a href="#True-23-13">13</a></span>
+<span class="normal"><a href="#True-23-14">14</a></span>
+<span class="normal"><a href="#True-23-15">15</a></span>
+<span class="normal"><a href="#True-23-16">16</a></span>
+<span class="normal"><a href="#True-23-17">17</a></span>
+<span class="normal"><a href="#True-23-18">18</a></span>
+<span class="normal"><a href="#True-23-19">19</a></span>
+<span class="normal"><a href="#True-23-20">20</a></span>
+<span class="normal"><a href="#True-23-21">21</a></span>
+<span class="normal"><a href="#True-23-22">22</a></span>
+<span class="normal"><a href="#True-23-23">23</a></span>
+<span class="normal"><a href="#True-23-24">24</a></span>
+<span class="normal"><a href="#True-23-25">25</a></span>
+<span class="normal"><a href="#True-23-26">26</a></span>
+<span class="normal"><a href="#True-23-27">27</a></span>
+<span class="normal"><a href="#True-23-28">28</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="True-23-1" name="True-23-1"></a><span class="nt">&lt;IfModule</span><span class="w"> </span><span class="s">mod_ssl.c</span><span class="nt">&gt;</span>
+<a id="True-23-2" name="True-23-2"></a><span class="nt">&lt;VirtualHost</span><span class="w"> </span><span class="s">*:443</span><span class="nt">&gt;</span>
+<a id="True-23-3" name="True-23-3"></a><span class="w">        </span><span class="nb">ServerName</span><span class="w"> </span>app.itrocks.com
+<a id="True-23-4" name="True-23-4"></a>
+<a id="True-23-5" name="True-23-5"></a><span class="w">        </span><span class="nb">DocumentRoot</span><span class="w"> </span><span class="sx">/var/www/html</span>
+<a id="True-23-6" name="True-23-6"></a>
+<a id="True-23-7" name="True-23-7"></a><span class="w">        </span><span class="nb">ProxyRequests</span><span class="w"> </span><span class="k">Off</span>
+<a id="True-23-8" name="True-23-8"></a><span class="w">        </span><span class="nb">ProxyPreserveHost</span><span class="w"> </span><span class="k">On</span>
+<a id="True-23-9" name="True-23-9"></a><span class="w">        </span><span class="nb">ProxyVia</span><span class="w"> </span><span class="k">Full</span>
+<a id="True-23-10" name="True-23-10"></a><span class="w">        </span><span class="nt">&lt;Proxy</span><span class="w"> </span><span class="s">*</span><span class="nt">&gt;</span>
+<a id="True-23-11" name="True-23-11"></a><span class="w">                </span><span class="nb">Require</span><span class="w"> </span><span class="k">all</span><span class="w"> </span>granted
+<a id="True-23-12" name="True-23-12"></a><span class="w">        </span><span class="nt">&lt;/Proxy&gt;</span>
+<a id="True-23-13" name="True-23-13"></a>
+<a id="True-23-14" name="True-23-14"></a><span class="w">        </span><span class="nb">RewriteEngine</span><span class="w"> </span><span class="k">On</span>
+<a id="True-23-15" name="True-23-15"></a><span class="w">        </span><span class="c"># If the client try to connect a WebSocket</span>
+<a id="True-23-16" name="True-23-16"></a><span class="w">        </span><span class="nb">RewriteCond</span><span class="w"> </span>%{HTTP:Upgrade}<span class="w"> </span>=websocket<span class="w"> </span>[NC]
+<a id="True-23-17" name="True-23-17"></a><span class="w">        </span><span class="nb">RewriteRule</span><span class="w"> </span>/(.*)<span class="w">           </span>ws://127.0.0.1:7001/$1<span class="w"> </span>[P,L]<span class="w"> </span>#<span class="w"> </span>WS_PORT=7001<span class="w"> </span>is<span class="w"> </span>used
+<a id="True-23-18" name="True-23-18"></a><span class="w">        </span><span class="c"># In any other case, reach the HTTP port</span>
+<a id="True-23-19" name="True-23-19"></a><span class="w">        </span><span class="nb">RewriteCond</span><span class="w"> </span>%{HTTP:Upgrade}<span class="w"> </span>!=websocket<span class="w"> </span>[NC]
+<a id="True-23-20" name="True-23-20"></a><span class="w">        </span><span class="nb">RewriteRule</span><span class="w"> </span>/(.*)<span class="w">           </span>http://127.0.0.1:7000/$1<span class="w"> </span>[P,L]<span class="w"> </span>#<span class="w"> </span>HTTP_PORT=7000
+<a id="True-23-21" name="True-23-21"></a>
+<a id="True-23-22" name="True-23-22"></a><span class="w">        </span><span class="nb">ProxyPassReverse</span><span class="w"> </span>/<span class="w"> </span>http://127.0.0.1:7000/
+<a id="True-23-23" name="True-23-23"></a>
+<a id="True-23-24" name="True-23-24"></a><span class="w">        </span><span class="nb">Include</span><span class="w"> </span><span class="sx">/etc/letsencrypt/options-ssl-apache.conf</span>
+<a id="True-23-25" name="True-23-25"></a><span class="w">        </span><span class="nb">SSLCertificateFile</span><span class="w"> </span><span class="sx">/etc/letsencrypt/live/app.itrocks.com/fullchain.pem</span>
+<a id="True-23-26" name="True-23-26"></a><span class="w">        </span><span class="nb">SSLCertificateKeyFile</span><span class="w"> </span><span class="sx">/etc/letsencrypt/live/app.itrocks.com/privkey.pem</span>
+<a id="True-23-27" name="True-23-27"></a><span class="nt">&lt;/VirtualHost&gt;</span>
+<a id="True-23-28" name="True-23-28"></a><span class="nt">&lt;/IfModule&gt;</span>
+</code></pre></div></td></tr></table></div>
+<p>Then, type <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-s">S</kbd></span> to save and <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-x">X</kbd></span> to exit.</p>
+<p no-linenums="no-linenums"><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#True-24-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="True-24-1" name="True-24-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>reload<span class="w"> </span>apache2
+</code></pre></div></td></tr></table></div></p>
+<p>And this is the end of it! ITRocks is now reachable on the url <a href="https://app.itrocks.com/">https://app.itrocks.com/</a></p>
+<h3 id="iptables">Iptables<a class="headerlink" href="#iptables" title="Permanent link">¶</a></h3>
+<p>Now that we have a running server, let's secure it with ubuntu's <code>iptables</code> firewall.</p>
+<p>We will create a file in <code>/home/ubuntu/tools</code> called <code>ìptables.config.sh</code>:</p>
+<p no-linenums="no-linenums"><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#True-25-1">1</a></span>
+<span class="normal"><a href="#True-25-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="True-25-1" name="True-25-1"></a><span class="nb">cd</span><span class="w"> </span>~/tools
+<a id="True-25-2" name="True-25-2"></a>nano<span class="w"> </span>iptables.config.sh
+</code></pre></div></td></tr></table></div></p>
+<p>Past this content into the editor:</p>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">/home/ubuntu/tools/iptables.config.sh</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#True-26-1"> 1</a></span>
+<span class="normal"><a href="#True-26-2"> 2</a></span>
+<span class="normal"><a href="#True-26-3"> 3</a></span>
+<span class="normal"><a href="#True-26-4"> 4</a></span>
+<span class="normal"><a href="#True-26-5"> 5</a></span>
+<span class="normal"><a href="#True-26-6"> 6</a></span>
+<span class="normal"><a href="#True-26-7"> 7</a></span>
+<span class="normal"><a href="#True-26-8"> 8</a></span>
+<span class="normal"><a href="#True-26-9"> 9</a></span>
+<span class="normal"><a href="#True-26-10">10</a></span>
+<span class="normal"><a href="#True-26-11">11</a></span>
+<span class="normal"><a href="#True-26-12">12</a></span>
+<span class="normal"><a href="#True-26-13">13</a></span>
+<span class="normal"><a href="#True-26-14">14</a></span>
+<span class="normal"><a href="#True-26-15">15</a></span>
+<span class="normal"><a href="#True-26-16">16</a></span>
+<span class="normal"><a href="#True-26-17">17</a></span>
+<span class="normal"><a href="#True-26-18">18</a></span>
+<span class="normal"><a href="#True-26-19">19</a></span>
+<span class="normal"><a href="#True-26-20">20</a></span>
+<span class="normal"><a href="#True-26-21">21</a></span>
+<span class="normal"><a href="#True-26-22">22</a></span>
+<span class="normal"><a href="#True-26-23">23</a></span>
+<span class="normal"><a href="#True-26-24">24</a></span>
+<span class="normal"><a href="#True-26-25">25</a></span>
+<span class="normal"><a href="#True-26-26">26</a></span>
+<span class="normal"><a href="#True-26-27">27</a></span>
+<span class="normal"><a href="#True-26-28">28</a></span>
+<span class="normal"><a href="#True-26-29">29</a></span>
+<span class="normal"><a href="#True-26-30">30</a></span>
+<span class="normal"><a href="#True-26-31">31</a></span>
+<span class="normal"><a href="#True-26-32">32</a></span>
+<span class="normal"><a href="#True-26-33">33</a></span>
+<span class="normal"><a href="#True-26-34">34</a></span>
+<span class="normal"><a href="#True-26-35">35</a></span>
+<span class="normal"><a href="#True-26-36">36</a></span>
+<span class="normal"><a href="#True-26-37">37</a></span>
+<span class="normal"><a href="#True-26-38">38</a></span>
+<span class="normal"><a href="#True-26-39">39</a></span>
+<span class="normal"><a href="#True-26-40">40</a></span>
+<span class="normal"><a href="#True-26-41">41</a></span>
+<span class="normal"><a href="#True-26-42">42</a></span>
+<span class="normal"><a href="#True-26-43">43</a></span>
+<span class="normal"><a href="#True-26-44">44</a></span>
+<span class="normal"><a href="#True-26-45">45</a></span>
+<span class="normal"><a href="#True-26-46">46</a></span>
+<span class="normal"><a href="#True-26-47">47</a></span>
+<span class="normal"><a href="#True-26-48">48</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="True-26-1" name="True-26-1"></a><span class="ch">#!/bin/bash</span>
+<a id="True-26-2" name="True-26-2"></a>
+<a id="True-26-3" name="True-26-3"></a><span class="c1"># Empty current tables</span>
+<a id="True-26-4" name="True-26-4"></a>iptables<span class="w"> </span>-t<span class="w"> </span>filter<span class="w"> </span>-F
+<a id="True-26-5" name="True-26-5"></a>
+<a id="True-26-6" name="True-26-6"></a><span class="c1"># Empty personal rules</span>
+<a id="True-26-7" name="True-26-7"></a>iptables<span class="w"> </span>-t<span class="w"> </span>filter<span class="w"> </span>-X
+<a id="True-26-8" name="True-26-8"></a>
+<a id="True-26-9" name="True-26-9"></a><span class="c1"># Deny all</span>
+<a id="True-26-10" name="True-26-10"></a>iptables<span class="w"> </span>-t<span class="w"> </span>filter<span class="w"> </span>-P<span class="w"> </span>INPUT<span class="w"> </span>DROP
+<a id="True-26-11" name="True-26-11"></a>iptables<span class="w"> </span>-t<span class="w"> </span>filter<span class="w"> </span>-P<span class="w"> </span>FORWARD<span class="w"> </span>DROP
+<a id="True-26-12" name="True-26-12"></a>iptables<span class="w"> </span>-t<span class="w"> </span>filter<span class="w"> </span>-P<span class="w"> </span>OUTPUT<span class="w"> </span>DROP
+<a id="True-26-13" name="True-26-13"></a>
+<a id="True-26-14" name="True-26-14"></a><span class="c1"># Do not break established connections</span>
+<a id="True-26-15" name="True-26-15"></a>iptables<span class="w"> </span>-A<span class="w"> </span>INPUT<span class="w"> </span>-m<span class="w"> </span>state<span class="w"> </span>--state<span class="w"> </span>RELATED,ESTABLISHED<span class="w"> </span>-j<span class="w"> </span>ACCEPT
+<a id="True-26-16" name="True-26-16"></a>iptables<span class="w"> </span>-A<span class="w"> </span>OUTPUT<span class="w"> </span>-m<span class="w"> </span>state<span class="w"> </span>--state<span class="w"> </span>RELATED,ESTABLISHED<span class="w"> </span>-j<span class="w"> </span>ACCEPT
+<a id="True-26-17" name="True-26-17"></a>
+<a id="True-26-18" name="True-26-18"></a><span class="c1"># Allow loopback</span>
+<a id="True-26-19" name="True-26-19"></a>iptables<span class="w"> </span>-t<span class="w"> </span>filter<span class="w"> </span>-A<span class="w"> </span>INPUT<span class="w"> </span>-i<span class="w"> </span>lo<span class="w"> </span>-j<span class="w"> </span>ACCEPT
+<a id="True-26-20" name="True-26-20"></a>iptables<span class="w"> </span>-t<span class="w"> </span>filter<span class="w"> </span>-A<span class="w"> </span>OUTPUT<span class="w"> </span>-o<span class="w"> </span>lo<span class="w"> </span>-j<span class="w"> </span>ACCEPT
+<a id="True-26-21" name="True-26-21"></a>
+<a id="True-26-22" name="True-26-22"></a><span class="c1"># ICMP (ping)</span>
+<a id="True-26-23" name="True-26-23"></a>iptables<span class="w"> </span>-t<span class="w"> </span>filter<span class="w"> </span>-A<span class="w"> </span>INPUT<span class="w"> </span>-p<span class="w"> </span>icmp<span class="w"> </span>-j<span class="w"> </span>ACCEPT
+<a id="True-26-24" name="True-26-24"></a>iptables<span class="w"> </span>-t<span class="w"> </span>filter<span class="w"> </span>-A<span class="w"> </span>OUTPUT<span class="w"> </span>-p<span class="w"> </span>icmp<span class="w"> </span>-j<span class="w"> </span>ACCEPT
+<a id="True-26-25" name="True-26-25"></a>
+<a id="True-26-26" name="True-26-26"></a><span class="c1"># SSH </span>
+<a id="True-26-27" name="True-26-27"></a>iptables<span class="w"> </span>-t<span class="w"> </span>filter<span class="w"> </span>-A<span class="w"> </span>INPUT<span class="w"> </span>-p<span class="w"> </span>tcp<span class="w"> </span>--dport<span class="w"> </span><span class="m">22</span><span class="w"> </span>-j<span class="w"> </span>ACCEPT
+<a id="True-26-28" name="True-26-28"></a>iptables<span class="w"> </span>-t<span class="w"> </span>filter<span class="w"> </span>-A<span class="w"> </span>OUTPUT<span class="w"> </span>-p<span class="w"> </span>tcp<span class="w"> </span>--dport<span class="w"> </span><span class="m">22</span><span class="w"> </span>-j<span class="w"> </span>ACCEPT
+<a id="True-26-29" name="True-26-29"></a>
+<a id="True-26-30" name="True-26-30"></a><span class="c1"># DNS</span>
+<a id="True-26-31" name="True-26-31"></a>iptables<span class="w"> </span>-t<span class="w"> </span>filter<span class="w"> </span>-A<span class="w"> </span>OUTPUT<span class="w"> </span>-p<span class="w"> </span>tcp<span class="w"> </span>--dport<span class="w"> </span><span class="m">53</span><span class="w"> </span>-j<span class="w"> </span>ACCEPT
+<a id="True-26-32" name="True-26-32"></a>iptables<span class="w"> </span>-t<span class="w"> </span>filter<span class="w"> </span>-A<span class="w"> </span>OUTPUT<span class="w"> </span>-p<span class="w"> </span>udp<span class="w"> </span>--dport<span class="w"> </span><span class="m">53</span><span class="w"> </span>-j<span class="w"> </span>ACCEPT
+<a id="True-26-33" name="True-26-33"></a>iptables<span class="w"> </span>-t<span class="w"> </span>filter<span class="w"> </span>-A<span class="w"> </span>INPUT<span class="w"> </span>-p<span class="w"> </span>tcp<span class="w"> </span>--dport<span class="w"> </span><span class="m">53</span><span class="w"> </span>-j<span class="w"> </span>ACCEPT
+<a id="True-26-34" name="True-26-34"></a>iptables<span class="w"> </span>-t<span class="w"> </span>filter<span class="w"> </span>-A<span class="w"> </span>INPUT<span class="w"> </span>-p<span class="w"> </span>udp<span class="w"> </span>--dport<span class="w"> </span><span class="m">53</span><span class="w"> </span>-j<span class="w"> </span>ACCEPT
+<a id="True-26-35" name="True-26-35"></a>
+<a id="True-26-36" name="True-26-36"></a><span class="c1"># APACHE : HTTP + HTTPS</span>
+<a id="True-26-37" name="True-26-37"></a>iptables<span class="w"> </span>-t<span class="w"> </span>filter<span class="w"> </span>-A<span class="w"> </span>OUTPUT<span class="w"> </span>-p<span class="w"> </span>tcp<span class="w"> </span>--dport<span class="w"> </span><span class="m">80</span><span class="w"> </span>-j<span class="w"> </span>ACCEPT
+<a id="True-26-38" name="True-26-38"></a>iptables<span class="w"> </span>-t<span class="w"> </span>filter<span class="w"> </span>-A<span class="w"> </span>OUTPUT<span class="w"> </span>-p<span class="w"> </span>tcp<span class="w"> </span>--dport<span class="w"> </span><span class="m">443</span><span class="w"> </span>-j<span class="w"> </span>ACCEPT
+<a id="True-26-39" name="True-26-39"></a>iptables<span class="w"> </span>-t<span class="w"> </span>filter<span class="w"> </span>-A<span class="w"> </span>INPUT<span class="w"> </span>-p<span class="w"> </span>tcp<span class="w"> </span>--dport<span class="w"> </span><span class="m">80</span><span class="w"> </span>-j<span class="w"> </span>ACCEPT
+<a id="True-26-40" name="True-26-40"></a>iptables<span class="w"> </span>-t<span class="w"> </span>filter<span class="w"> </span>-A<span class="w"> </span>INPUT<span class="w"> </span>-p<span class="w"> </span>tcp<span class="w"> </span>--dport<span class="w"> </span><span class="m">443</span><span class="w"> </span>-j<span class="w"> </span>ACCEPT
+<a id="True-26-41" name="True-26-41"></a>
+<a id="True-26-42" name="True-26-42"></a><span class="c1"># Allow distant mongodb connection</span>
+<a id="True-26-43" name="True-26-43"></a>iptables<span class="w"> </span>-t<span class="w"> </span>filter<span class="w"> </span>-A<span class="w"> </span>OUTPUT<span class="w"> </span>-p<span class="w"> </span>tcp<span class="w"> </span>--dport<span class="w"> </span><span class="m">27017</span><span class="w"> </span>-j<span class="w"> </span>ACCEPT
+<a id="True-26-44" name="True-26-44"></a>iptables<span class="w"> </span>-t<span class="w"> </span>filter<span class="w"> </span>-A<span class="w"> </span>INPUT<span class="w">  </span>-p<span class="w"> </span>tcp<span class="w"> </span>--dport<span class="w"> </span><span class="m">27017</span><span class="w"> </span>-j<span class="w"> </span>ACCEPT
+<a id="True-26-45" name="True-26-45"></a>
+<a id="True-26-46" name="True-26-46"></a><span class="c1"># SMTP Port</span>
+<a id="True-26-47" name="True-26-47"></a>iptables<span class="w"> </span>-t<span class="w"> </span>filter<span class="w"> </span>-A<span class="w"> </span>OUTPUT<span class="w"> </span>-p<span class="w"> </span>tcp<span class="w"> </span>--dport<span class="w"> </span><span class="m">465</span><span class="w"> </span>-j<span class="w"> </span>ACCEPT
+<a id="True-26-48" name="True-26-48"></a>iptables<span class="w"> </span>-t<span class="w"> </span>filter<span class="w"> </span>-A<span class="w"> </span>INPUT<span class="w"> </span>-p<span class="w"> </span>tcp<span class="w"> </span>--dport<span class="w"> </span><span class="m">465</span><span class="w"> </span>-j<span class="w"> </span>ACCEPT
+</code></pre></div></td></tr></table></div>
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
+<p>Modifying this file may <strong>lock you out the server</strong>, as well as using some <code>iptables</code> command like <code>iptables flush</code>.
+Since by default the policy is to reject all, if you flush all configurations, the server will reject everything the 
+<strong>instant</strong> the command is executed, cutting your <abbr title="Secure Shell">SSH</abbr> connection too. </p>
+<p>This is still temporary at this step, because those changes only happen in memory. If you mess it up,
+restart the server by using your provider's admin panel. </p>
+<p>If restart doesn't work because the restart command sent by your provider use a blocked 
+port, you'll need to rely on your provider support, or on an emergency or recovery procedure he planned.</p>
+</div>
+<p>Then, type <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-s">S</kbd></span> to save and <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-x">X</kbd></span> to exit.</p>
+<p>Give execution permission to this newly created file and run it to apply:</p>
+<p no-linenums="no-linenums"><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#True-27-1">1</a></span>
+<span class="normal"><a href="#True-27-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="True-27-1" name="True-27-1"></a>chmod<span class="w"> </span>+x<span class="w"> </span>iptables.config.sh
+<a id="True-27-2" name="True-27-2"></a>sudo<span class="w"> </span>./iptables.config.sh
+</code></pre></div></td></tr></table></div></p>
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
+<p>Before persisting those rules in the next step, it is very important to test that everything is working fine:</p>
+<ol>
+<li>Exit and reconnect in <code>SSH</code> to ensure it is still possible</li>
+<li>Try to reach <strong>ITRocks</strong> and make it send an email to one of your addresses (ensure that you receive it)</li>
+<li>Login to <strong>ITRocks</strong> and check that your websocket is successfully connected.</li>
+<li>Try to run <code>sudo apt-get update</code> and <code>sudo apt-get upgrade</code> to ensure that the firewall rules do not prevent those commands to execute.</li>
+</ol>
+</div>
+<p>Once all is ok, we can persist <code>iptables</code> configuration:</p>
+<p no-linenums="no-linenums"><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#True-28-1">1</a></span>
+<span class="normal"><a href="#True-28-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="True-28-1" name="True-28-1"></a>sudo<span class="w"> </span>iptables-save<span class="w"> </span>&gt;<span class="w"> </span>rules.v4
+<a id="True-28-2" name="True-28-2"></a>sudo<span class="w"> </span>mv<span class="w"> </span>rules.v4<span class="w"> </span>/etc/iptables
+</code></pre></div></td></tr></table></div></p>
+<p>Check that  <code>iptables-persistent</code> is running:</p>
+<p no-linenums="no-linenums"><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#True-29-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="True-29-1" name="True-29-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>netfilter-persistent.service
+</code></pre></div></td></tr></table></div></p>
+<p>Should print something like:</p>
+<p no-linenums="no-linenums"><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#True-30-1"> 1</a></span>
+<span class="normal"><a href="#True-30-2"> 2</a></span>
+<span class="normal"><a href="#True-30-3"> 3</a></span>
+<span class="normal"><a href="#True-30-4"> 4</a></span>
+<span class="normal"><a href="#True-30-5"> 5</a></span>
+<span class="normal"><a href="#True-30-6"> 6</a></span>
+<span class="normal"><a href="#True-30-7"> 7</a></span>
+<span class="normal"><a href="#True-30-8"> 8</a></span>
+<span class="normal"><a href="#True-30-9"> 9</a></span>
+<span class="normal"><a href="#True-30-10">10</a></span>
+<span class="normal"><a href="#True-30-11">11</a></span>
+<span class="normal"><a href="#True-30-12">12</a></span>
+<span class="normal"><a href="#True-30-13">13</a></span>
+<span class="normal"><a href="#True-30-14">14</a></span>
+<span class="normal"><a href="#True-30-15">15</a></span>
+<span class="normal"><a href="#True-30-16">16</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="True-30-1" name="True-30-1"></a>● netfilter-persistent.service - netfilter persistent configuration
+<a id="True-30-2" name="True-30-2"></a>     Loaded: loaded (/lib/systemd/system/netfilter-persistent.service; enabled; vendor preset: enabled)
+<a id="True-30-3" name="True-30-3"></a>    Drop-In: /etc/systemd/system/netfilter-persistent.service.d
+<a id="True-30-4" name="True-30-4"></a>             └─iptables.conf
+<a id="True-30-5" name="True-30-5"></a>     Active: active (exited) since Thu 2023-02-21 23:43:04 UTC; 19h ago
+<a id="True-30-6" name="True-30-6"></a>       Docs: man:netfilter-persistent(8)
+<a id="True-30-7" name="True-30-7"></a>   Main PID: 518 (code=exited, status=0/SUCCESS)
+<a id="True-30-8" name="True-30-8"></a>        CPU: 7ms
+<a id="True-30-9" name="True-30-9"></a>
+<a id="True-30-10" name="True-30-10"></a>Feb 21 23:43:04 vps-ac78ef7 systemd[1]: Starting netfilter persistent configuration...
+<a id="True-30-11" name="True-30-11"></a>Feb 21 23:43:04 vps-ac78ef7 netfilter-persistent[522]: run-parts: executing /usr/share/netfilter-persistent/plugin&gt;
+<a id="True-30-12" name="True-30-12"></a>Feb 21 23:43:04 vps-ac78ef7 netfilter-persistent[524]: Warning: skipping IPv4 (no rules to load)
+<a id="True-30-13" name="True-30-13"></a>Feb 21 23:43:04 vps-ac78ef7 netfilter-persistent[522]: run-parts: executing /usr/share/netfilter-persistent/plugin&gt;
+<a id="True-30-14" name="True-30-14"></a>Feb 21 23:43:04 vps-ac78ef7 netfilter-persistent[526]: Warning: skipping IPv6 (no rules to load)
+<a id="True-30-15" name="True-30-15"></a>Feb 21 23:43:04 vps-ac78ef7 systemd[1]: Finished netfilter persistent configuration.
+<a id="True-30-16" name="True-30-16"></a>lines 1-15/15 (END)
+</code></pre></div></td></tr></table></div></p>
+<p>If it is not running, you must enable it by hand:</p>
+<p no-linenums="no-linenums"><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#True-31-1">1</a></span>
+<span class="normal"><a href="#True-31-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="True-31-1" name="True-31-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>netfilter-persistent.service
+<a id="True-31-2" name="True-31-2"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>netfilter-persistent.service
+</code></pre></div></td></tr></table></div></p>
+<h3 id="fail2ban">Fail2ban<a class="headerlink" href="#fail2ban" title="Permanent link">¶</a></h3>
+<p>Fail2ban is a tool to prevent intrusions by watching different services logs. We will use it to watch <code>apache</code> logs and
+to protect our <code>SSH</code> from brute force attacks.</p>
+<p>We must start by enabling it:</p>
+<p no-linenums="no-linenums"><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#True-32-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="True-32-1" name="True-32-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>fail2ban<span class="w"> </span>--now
+</code></pre></div></td></tr></table></div></p>
+<p>Now we need to create a local jail and start editing it:</p>
+<p no-linenums="no-linenums"><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#True-33-1">1</a></span>
+<span class="normal"><a href="#True-33-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="True-33-1" name="True-33-1"></a>sudo<span class="w"> </span>cp<span class="w"> </span>/etc/fail2ban/jail.conf<span class="w"> </span>/etc/fail2ban/jail.local
+<a id="True-33-2" name="True-33-2"></a>sudo<span class="w"> </span>nano<span class="w"> </span>/etc/fail2ban/jail.local
+</code></pre></div></td></tr></table></div></p>
+<p>Starts by uncommenting the following lines (to find them quickly type <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-w">W</kbd></span>, then type the string you search, then type <span class="keys"><kbd class="key-enter">Enter</kbd></span>):</p>
+<ul>
+<li><code>bantime.increment = true</code></li>
+<li><code>bantime.multipliers = 1 2 4 8 16 32 64</code></li>
+<li><code>ignoreip = 127.0.0.1/8 ::1</code></li>
+</ul>
+<p>Now, we will enable some jails.</p>
+<p>A jail looks like this:</p>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">/etc/fail2ban/jail.local</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#True-34-1">1</a></span>
+<span class="normal"><a href="#True-34-2">2</a></span>
+<span class="normal"><a href="#True-34-3">3</a></span>
+<span class="normal"><a href="#True-34-4">4</a></span>
+<span class="normal"><a href="#True-34-5">5</a></span>
+<span class="normal"><a href="#True-34-6">6</a></span>
+<span class="normal"><a href="#True-34-7">7</a></span>
+<span class="normal"><a href="#True-34-8">8</a></span>
+<span class="normal"><a href="#True-34-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="True-34-1" name="True-34-1"></a><span class="k">[sshd]</span>
+<a id="True-34-2" name="True-34-2"></a>
+<a id="True-34-3" name="True-34-3"></a><span class="c1"># To use more aggressive sshd modes set filter parameter "mode" in jail.local:</span>
+<a id="True-34-4" name="True-34-4"></a><span class="c1"># normal (default), ddos, extra or aggressive (combines all).</span>
+<a id="True-34-5" name="True-34-5"></a><span class="c1"># See "tests/files/logs/sshd" or "filter.d/sshd.conf" for usage example and details.</span>
+<a id="True-34-6" name="True-34-6"></a><span class="c1">#mode   = normal</span>
+<a id="True-34-7" name="True-34-7"></a><span class="na">port</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="s">ssh</span>
+<a id="True-34-8" name="True-34-8"></a><span class="na">logpath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">%(sshd_log)s</span>
+<a id="True-34-9" name="True-34-9"></a><span class="na">backend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">%(sshd_backend)s</span>
+</code></pre></div></td></tr></table></div>
+<p>By default, they are disabled. To enable a jail, just add <code>enabled = true</code> after the last parameter:</p>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">/etc/fail2ban/jail.local</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#True-35-1"> 1</a></span>
+<span class="normal"><a href="#True-35-2"> 2</a></span>
+<span class="normal"><a href="#True-35-3"> 3</a></span>
+<span class="normal"><a href="#True-35-4"> 4</a></span>
+<span class="normal"><a href="#True-35-5"> 5</a></span>
+<span class="normal"><a href="#True-35-6"> 6</a></span>
+<span class="normal"><a href="#True-35-7"> 7</a></span>
+<span class="normal"><a href="#True-35-8"> 8</a></span>
+<span class="normal"><a href="#True-35-9"> 9</a></span>
+<span class="normal"><a href="#True-35-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="True-35-1" name="True-35-1"></a><span class="k">[sshd]</span>
+<a id="True-35-2" name="True-35-2"></a>
+<a id="True-35-3" name="True-35-3"></a><span class="c1"># To use more aggressive sshd modes set filter parameter "mode" in jail.local:</span>
+<a id="True-35-4" name="True-35-4"></a><span class="c1"># normal (default), ddos, extra or aggressive (combines all).</span>
+<a id="True-35-5" name="True-35-5"></a><span class="c1"># See "tests/files/logs/sshd" or "filter.d/sshd.conf" for usage example and details.</span>
+<a id="True-35-6" name="True-35-6"></a><span class="c1">#mode   = normal</span>
+<a id="True-35-7" name="True-35-7"></a><span class="na">port</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="s">ssh</span>
+<a id="True-35-8" name="True-35-8"></a><span class="na">logpath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">%(sshd_log)s</span>
+<a id="True-35-9" name="True-35-9"></a><span class="na">backend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">%(sshd_backend)s</span>
+<a id="True-35-10" name="True-35-10"></a><span class="na">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
+</code></pre></div></td></tr></table></div>
+<p>There is the list of jails we want to enable:</p>
+<ul>
+<li><code>[sshd]</code></li>
+<li><code>[apache-auth]</code></li>
+<li><code>[apache-badbots]</code></li>
+<li><code>[apache-botsearch]</code></li>
+<li><code>[apache-fakegooglebot]</code></li>
+<li><code>[apache-modsecurity]</code></li>
+</ul>
+<p>When you're done, type <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-s">S</kbd></span> to save and <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-x">X</kbd></span> to exit.</p>
+<p>Then you need to reload fail2ban for those changes to take effect:</p>
+<p no-linenums="no-linenums"><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#True-36-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="True-36-1" name="True-36-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>fail2ban
+</code></pre></div></td></tr></table></div></p>
+<p>Now that our server is fully configured, we need to have a talk about <a href="/blog/2023/03/01/vps-web-hosting-series-part-3-maintenance-additional-notes/">maintenance and additional notes, tips and advices</a>
+in the third and last part for this series <img alt="😄" class="twemoji" src="../../../../../assets/external/cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f604.svg" title=":smile:"></p>
+<aside class="md-source-file">
+<span class="md-source-file__fact">
+<span class="md-icon" title="Contributors">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2Z"></path></svg>
+</span>
+<span>GitHub</span>
+<nav>
+<a class="md-author" href="https://github.com/jordan-breton" title="@jordan-breton">
+<img alt="jordan-breton" src="../../../../../assets/external/avatars.githubusercontent.com/u/11458097.5aea0b69.jpg">
+</a>
+</nav>
+</span>
+</aside>
+<form class="md-feedback" hidden="" name="feedback">
+<fieldset>
+<legend class="md-feedback__title">
+        Did you like this content?
+      </legend>
+<div class="md-feedback__inner">
+<div class="md-feedback__list">
+<button class="md-feedback__icon md-icon" data-md-value="1" title="Yes, I would want to see more of this!" type="submit">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m12 21.35-1.45-1.32C5.4 15.36 2 12.27 2 8.5 2 5.41 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.08C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.41 22 8.5c0 3.77-3.4 6.86-8.55 11.53L12 21.35Z"></path></svg>
+</button>
+<button class="md-feedback__icon md-icon" data-md-value="0" title="Not my cup of tea :/" type="submit">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m12 21.35-1.45-1.32C5.4 15.36 2 12.27 2 8.5 2 5.41 4.42 3 7.5 3c.67 0 1.32.12 1.94.33L13 9.35l-4 5 3 7M16.5 3C19.58 3 22 5.41 22 8.5c0 3.77-3.4 6.86-8.55 11.53L12 21.35l-1-7 4.5-5-2.65-5.08C13.87 3.47 15.17 3 16.5 3Z"></path></svg>
+</button>
+</div>
+<div class="md-feedback__note">
+<div data-md-value="1" hidden="">
+              
+              
+                
+              
+              Thanks for your feedback!
+            </div>
+<div data-md-value="0" hidden="">
+              
+              
+                
+              
+              Thanks for your feedback! Feels free to reach me about it using my  <a href="https://github.com/jordan-breton/it-journey-website-giscus/issues/new/?title=%5BFeedback%5D+VPS%20%26amp%3B%20Web%20Hosting%20series%20part%202%3A%20Configuration+-+/blog/2023/02/28/vps-web-hosting-series-part-2-configuration/" rel="noopener" target="_blank">
+    feedback form
+</a>.
+            </div>
+</div>
+</div>
+</fieldset>
+</form>
+<h2 id="__comments">Comments</h2>
+<script async="" crossorigin="anonymous" data-category="General" data-category-id="DIC_kwDOI-qeG84CUQPM" data-emit-metadata="0" data-input-position="top" data-lang="en" data-loading="lazy" data-mapping="url" data-reactions-enabled="1" data-repo="jordan-breton/it-journey-website-giscus" data-repo-id="R_kgDOI-qeGw" data-strict="1" data-theme="preferred_color_scheme" src="https://giscus.app/client.js">
+</script>
+<!-- Synchronize Giscus theme with palette -->
+<script>
+	(() => {
+		const giscus = document.querySelector("script[src*=giscus]")
+
+		/* Set palette on initial load */
+		const palette = __md_get("__palette")
+		if (palette && typeof palette.color === "object") {
+			const theme = palette.color.scheme === "slate" ? "dark" : "light"
+			giscus.setAttribute("data-theme", theme)
+		}
+
+		/* Register event handlers after documented loaded */
+		document.addEventListener("DOMContentLoaded", function() {
+			const ref = document.querySelector("[data-md-component=palette]")
+			ref.addEventListener("change", function() {
+				const palette = __md_get("__palette")
+				if (palette && typeof palette.color === "object") {
+					const theme = palette.color.scheme === "slate" ? "dark" : "light"
+
+					/* Instruct Giscus to change theme */
+					let frame = document.querySelector(".giscus-frame")
+					frame.contentWindow.postMessage(
+						{ giscus: { setConfig: { theme } } },
+						"https://giscus.app"
+					)
+				}
+			})
+		})
+	})()
+</script>
+</article>
+</div>
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+</div>
+<a class="md-top md-icon" data-md-component="top" hidden="" href="#">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"></path></svg>
+            Back to top
+          </a>
+</main>
+<footer class="md-footer">
+<nav aria-label="Footer" class="md-footer__inner md-grid">
+<a aria-label="Previous: VPS &amp;amp; Web Hosting series part 1: Installation" class="md-footer__link md-footer__link--prev" href="../../27/vps-web-hosting-series-part-1-installation/" rel="prev">
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
+</div>
+<div class="md-footer__title">
+<div class="md-ellipsis">
+<span class="md-footer__direction">
+                  Previous
+                </span>
+					VPS &amp; Web Hosting series part 1: Installation
+				</div>
+</div>
+</a>
+<a aria-label="Next: VPS &amp;amp; Web Hosting series part 3: Maintenance &amp;amp; additional notes" class="md-footer__link md-footer__link--next" href="../../../03/01/vps-web-hosting-series-part-3-maintenance-additional-notes/" rel="next">
+<div class="md-footer__title">
+<div class="md-ellipsis">
+<span class="md-footer__direction">
+                  Next
+                </span>
+					VPS &amp; Web Hosting series part 3: Maintenance &amp; additional notes
+				</div>
+</div>
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"></path></svg>
+</div>
+</a>
+</nav>
+<div class="md-typeset md-grid">
+<hr/>
+</div>
+<div class="md-footer-custom md-typeset">
+<div class="md-footer-custom__inner md-grid">
+<div class="md-foot-custom-col">
+<a aria-label="IT Journey" class="md-header__button md-logo" data-md-component="logo" href="../../../../.." title="IT Journey">
+<img alt="logo" src="../../../../../assets/images/logo-xs.png"/>
+</a>
+<div class="col-wrapper">
+<h5>IT Journey</h5>
+<menu>
+<li><a href="/">Home</a></li>
+<li><a href="/blog">Blog</a></li>
+</menu>
+</div>
+</div>
+<div class="md-foot-custom-col">
+<h5>About</h5>
+<menu>
+<li><a href="/abaout/skill-set">Skill set</a></li>
+<li><a href="/about/roadmap">Certifications roadmap</a></li>
+<li><a href="/about/history">History</a></li>
+</menu>
+</div>
+<div class="md-foot-custom-col">
+<h5>Useful links</h5>
+<menu>
+<li><a href="/terms-and-conditions/#article-9-confidentiality">Privacy policy</a></li>
+<li><a href="/terms-and-conditions">Terms and conditions</a></li>
+</menu>
+</div>
+<div class="md-foot-custom-col buttons">
+<a class="md-button md-button--primary" href="/about#contact">
+<span class="md-icon"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m20 8-8 5-8-5V6l8 5 8-5m0-2H4c-1.11 0-2 .89-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Z"></path></svg></span>
+<span>Contact me</span>
+</a>
+<a class="md-button md-button--primary" href="https://it-journey.com/feed_rss_created.xml">
+<span class="md-icon"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19 7.38 20 6.18 20 5 20 4 19 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1Z"></path></svg></span>
+<span>RSS Feeds</span>
+</a>
+</div>
+</div>
+</div>
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-copyright">
+<div class="md-copyright__highlight">
+      Copyright © 2023 Jordan Breton – <a href="#__consent">Change cookie settings</a>
+</div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" rel="noopener" target="_blank">
+      Material for MkDocs Insiders
+    </a>
+</div>
+<div class="md-social">
+<a class="md-social__link" href="https://www.linkedin.com/in/jordan-breton-281088267/" rel="noopener" target="_blank" title="www.linkedin.com">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"></path></svg>
+</a>
+<a class="md-social__link" href="https://twitter.com/JordanBretonIT" rel="noopener" target="_blank" title="twitter.com">
+<svg viewbox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"></path></svg>
+</a>
+<a class="md-social__link" href="https://github.com/jordan-breton" rel="noopener" target="_blank" title="github.com">
+<svg viewbox="0 0 496 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg>
+</a>
+<a class="md-social__link" href="https://framagit.org/" rel="noopener" target="_blank" title="framagit.org">
+<svg viewbox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="m503.5 204.6-.7-1.8-69.7-181.78c-1.4-3.57-3.9-6.59-7.2-8.64-2.4-1.55-5.1-2.515-8-2.81-2.9-.295-5.7.083-8.4 1.11-2.7 1.02-5.1 2.66-7.1 4.78-1.9 2.12-3.3 4.67-4.1 7.44l-47 144H160.8l-47.1-144c-.8-2.77-2.2-5.31-4.1-7.43-2-2.12-4.4-3.75-7.1-4.77a18.1 18.1 0 0 0-8.38-1.113 18.4 18.4 0 0 0-8.04 2.793 18.09 18.09 0 0 0-7.16 8.64L9.267 202.8l-.724 1.8a129.57 129.57 0 0 0-3.52 82c7.747 26.9 24.047 50.7 46.447 67.6l.27.2.59.4 105.97 79.5 52.6 39.7 32 24.2c3.7 1.9 8.3 4.3 13 4.3 4.7 0 9.3-2.4 13-4.3l32-24.2 52.6-39.7 106.7-79.9.3-.3c22.4-16.9 38.7-40.6 45.6-67.5 8.6-27 7.4-55.8-2.6-82z"></path></svg>
+</a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<div class="md-dialog" data-md-component="dialog">
+<div class="md-dialog__inner md-typeset"></div>
+</div>
+<div class="md-consent" data-md-component="consent" hidden="" id="__consent">
+<div class="md-consent__overlay"></div>
+<aside class="md-consent__inner">
+<form class="md-consent__form md-grid md-typeset" name="consent">
+<h4>Cookie consent</h4>
+<p>I use cookies to recognize your repeated visits and preferences, as well as to measure the relevance of my content and whether users find what they're searching for. With your consent, you're helping me to create better content.</p>
+<input class="md-toggle" id="__settings" type="checkbox"/>
+<div class="md-consent__settings">
+<ul class="task-list">
+<li class="task-list-item">
+<label class="task-list-control">
+<input checked="" name="analytics" type="checkbox"/>
+<span class="task-list-indicator"></span>
+          Google Analytics
+        </label>
+</li>
+<li class="task-list-item">
+<label class="task-list-control">
+<input checked="" name="github" type="checkbox"/>
+<span class="task-list-indicator"></span>
+          GitHub
+        </label>
+</li>
+</ul>
+</div>
+<div class="md-consent__controls">
+<button class="md-button md-button--primary">Accept</button>
+<label class="md-button" for="__settings">Manage settings</label>
+</div>
+</form>
+</aside>
+</div>
+<script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout(function(){document.querySelector("[data-md-component=consent]").hidden=!1},250);var action,form=document.forms.consent;for(action of["submit","reset"])form.addEventListener(action,function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map(function(e){return[e,!0]}))),location.hash="",location.reload()})</script>
+<script id="__config" type="application/json">{"base": "../../../../..", "features": ["content.code.annotate", "content.code.copy", "content.code.select", "content.tooltips", "navigation.tracking", "navigation.indexes", "navigation.expand", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.path", "navigation.footer", "search.suggest", "search.highlight", "search.share", "toc.integrate", "toc.follow"], "search": "../../../../../assets/javascripts/workers/search.6c7302c4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+<script src="../../../../../assets/javascripts/bundle.96d2b699.min.js"></script>
+<script src="../../../../../js/timeago.min.js"></script>
+<script src="../../../../../js/timeago_mkdocs_material.js"></script>
+<script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});})</script></body>
+</html>

@@ -1,0 +1,1251 @@
+
+<!DOCTYPE html>
+
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="This website has two purposes: introducing myself and talking about passionating IT-related stuff :)" name="description"/>
+<meta content="Jordan Breton" name="author"/>
+<link href="https://it-journey.com/blog/2023/02/27/vps-web-hosting-series-part-1-installation/" rel="canonical">
+<link href="../../25/vps-web-hosting-series-bare-metal-setup-from-start-to-end/" rel="prev"/>
+<link href="../../28/vps-web-hosting-series-part-2-configuration/" rel="next"/>
+<link href="../../../../../feed_rss_created.xml" rel="alternate" title="RSS feed" type="application/rss+xml"/>
+<link href="../../../../../feed_rss_updated.xml" rel="alternate" title="RSS feed of updated content" type="application/rss+xml"/>
+<link href="../../../../../assets/images/logo-xs.png" rel="icon"/>
+<meta content="mkdocs-1.4.2, mkdocs-material-9.1.0+insiders-4.32.2" name="generator"/>
+<title>VPS &amp; Web Hosting series part 1: Installation - IT Journey</title>
+<link href="../../../../../assets/stylesheets/main.24f010b1.min.css" rel="stylesheet"/>
+<link href="../../../../../assets/stylesheets/palette.6932e648.min.css" rel="stylesheet"/>
+
+<link href="../../../../../assets/external/fonts.googleapis.com/css.49ea35f2.css" rel="stylesheet">
+<style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+<link href="../../../../../css/timeago.css" rel="stylesheet"/>
+<link href="../../../../../assets/css/style.css" rel="stylesheet"/>
+<script>__md_scope=new URL("../../../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+<meta content="website" property="og:type"/>
+<meta content="Vps web hosting series part 1 installation - IT Journey" property="og:title"/>
+<meta content="This website has two purposes: introducing myself and talking about passionating IT-related stuff :)" property="og:description"/>
+<meta content="https://it-journey.com/assets/images/social/blog/posts/vps-web-hosting-series-part-1-installation.png" property="og:image"/>
+<meta content="image/png" property="og:image:type"/>
+<meta content="1200" property="og:image:width"/>
+<meta content="630" property="og:image:height"/>
+<meta content="https://it-journey.com/blog/2023/02/27/vps-web-hosting-series-part-1-installation/" property="og:url"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="Vps web hosting series part 1 installation - IT Journey" name="twitter:title"/>
+<meta content="This website has two purposes: introducing myself and talking about passionating IT-related stuff :)" name="twitter:description"/>
+<meta content="https://it-journey.com/assets/images/social/blog/posts/vps-web-hosting-series-part-1-installation.png" name="twitter:image"/>
+<!-- RSS Feed -->
+<link href="https://it-journey.com/feed_rss_created.xml" rel="alternate" title="RSS feed of created content" type="application/rss+xml">
+<link href="https://it-journey.com/feed_rss_updated.xml" rel="alternate" title="RSS feed of updated content" type="application/rss+xml">
+<link href="/assets/css/blog/post.css" rel="stylesheet"/>
+<link href="../../../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            
+                .gscrollbar-fixer { padding-right: 15px; }
+                .gdesc-inner { font-size: 0.75rem; }
+                body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+                body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+                body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}
+                </style><script src="../../../../../assets/javascripts/glightbox.min.js"></script></head>
+<body data-md-color-accent="amber" data-md-color-primary="amber" data-md-color-scheme="default" dir="ltr">
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#vps-web-hosting-series-part-1-installation">
+          Skip to content
+        </a>
+</div>
+<div data-md-component="announce">
+<aside class="md-banner">
+<div class="md-banner__inner md-grid md-typeset">
+            
+            
+👋 I'm <strong>open</strong> for great job opportunities especially in the <strong>cyber-security</strong> field so... if you're interested, don't be shy,
+<a class="md-button md-button--primary" data-md-color-primary="amber" href="/about" title="Contact me!">
+	contact me!
+</a>
+</div>
+</aside>
+</div>
+<header class="md-header" data-md-component="header">
+<nav aria-label="Header" class="md-header__inner md-grid">
+<a aria-label="IT Journey" class="md-header__button md-logo" data-md-component="logo" href="../../../../.." title="IT Journey">
+<img alt="logo" src="../../../../../assets/images/logo-xs.png"/>
+</a>
+<label class="md-header__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"></path></svg>
+</label>
+<div class="md-header__title" data-md-component="header-title">
+<div class="md-header__ellipsis">
+<div class="md-header__topic">
+<span class="md-ellipsis">
+            IT Journey
+          </span>
+</div>
+<div class="md-header__topic" data-md-component="header-topic">
+<span class="md-ellipsis">
+            
+              VPS &amp; Web Hosting series part 1: Installation
+            
+          </span>
+</div>
+</div>
+</div>
+<form class="md-header__option" data-md-component="palette">
+<input aria-label="Switch to dark mode" class="md-option" data-md-color-accent="amber" data-md-color-media="" data-md-color-primary="amber" data-md-color-scheme="default" id="__palette_0" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_1" hidden="" title="Switch to dark mode">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"></path></svg>
+</label>
+<input aria-label="Switch to bright mode" class="md-option" data-md-color-accent="amber" data-md-color-media="" data-md-color-primary="amber" data-md-color-scheme="slate" id="__palette_1" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_0" hidden="" title="Switch to bright mode">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"></path></svg>
+</label>
+</form>
+<script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+<label class="md-header__button md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"></path></svg>
+</label>
+<div class="md-search" data-md-component="search" role="dialog">
+<label class="md-search__overlay" for="__search"></label>
+<div class="md-search__inner" role="search">
+<form class="md-search__form" name="search">
+<input aria-label="Search" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" name="query" placeholder="Search" required="" spellcheck="false" type="text"/>
+<label class="md-search__icon md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
+</label>
+<nav aria-label="Search" class="md-search__options">
+<a aria-label="Share" class="md-search__icon md-icon" data-clipboard="" data-clipboard-text="" data-md-component="search-share" href="javascript:void(0)" tabindex="-1" title="Share">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"></path></svg>
+</a>
+<button aria-label="Clear" class="md-search__icon md-icon" tabindex="-1" title="Clear" type="reset">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"></path></svg>
+</button>
+</nav>
+<div class="md-search__suggest" data-md-component="search-suggest"></div>
+</form>
+<div class="md-search__output">
+<div class="md-search__scrollwrap" data-md-scrollfix="">
+<div class="md-search-result" data-md-component="search-result">
+<div class="md-search-result__meta">
+            Initializing search
+          </div>
+<ol class="md-search-result__list" role="presentation"></ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="md-header__source">
+<a class="md-source" data-md-component="source" href="https://github.com/jordan-breton/it-journey-sources" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"></path></svg>
+</div>
+<div class="md-source__repository">
+    IT Journey (Mirror)
+  </div>
+</a>
+</div>
+</nav>
+</header>
+<div class="md-container" data-md-component="container">
+<nav aria-label="Tabs" class="md-tabs" data-md-component="tabs">
+<div class="md-grid">
+<ul class="md-tabs__list">
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../../..">
+        
+  
+    
+  
+  Home
+
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../../../about/">
+          
+  
+    
+  
+  About
+
+        </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link md-tabs__link--active" href="../../../../">
+          
+  
+    
+  
+  Blog
+
+        </a>
+</li>
+</ul>
+</div>
+</nav>
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden="">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Navigation" class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="IT Journey" class="md-nav__button md-logo" data-md-component="logo" href="../../../../.." title="IT Journey">
+<img alt="logo" src="../../../../../assets/images/logo-xs.png"/>
+</a>
+    IT Journey
+  </label>
+<div class="md-nav__source">
+<a class="md-source" data-md-component="source" href="https://github.com/jordan-breton/it-journey-sources" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"></path></svg>
+</div>
+<div class="md-source__repository">
+    IT Journey (Mirror)
+  </div>
+</a>
+</div>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../..">
+<span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_2" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../../../about/">
+<span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_2">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_2_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_2">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    About
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../../about/skill-set/">
+<span class="md-ellipsis">
+    
+  
+    Skills
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../../about/roadmap/">
+<span class="md-ellipsis">
+    
+  
+    Certifications Roadmap
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../../about/history/">
+<span class="md-ellipsis">
+    
+  
+    History
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_3" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../../">
+<span class="md-ellipsis">
+    
+  
+    Blog
+  
+
+    
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="true" aria-labelledby="__nav_3_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_3">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Blog
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--section md-nav__item--nested">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_3_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    Archive
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_2_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_3_2">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Archive
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../archive/2023/">
+<span class="md-ellipsis">
+<span class="md-typeset">
+      2023
+    </span>
+</span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--section md-nav__item--nested">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_3_3" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    Categories
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_3_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_3_3">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Categories
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../category/bare-metal/">
+<span class="md-ellipsis">
+<span class="md-typeset">
+      Bare metal
+    </span>
+</span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../category/dev-environment/">
+<span class="md-ellipsis">
+<span class="md-typeset">
+      Dev environment
+    </span>
+</span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../category/dev/">
+<span class="md-ellipsis">
+<span class="md-typeset">
+      Dev
+    </span>
+</span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../category/hosting/">
+<span class="md-ellipsis">
+<span class="md-typeset">
+      Hosting
+    </span>
+</span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../category/meta/">
+<span class="md-ellipsis">
+<span class="md-typeset">
+      Meta
+    </span>
+</span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../category/nodejs/">
+<span class="md-ellipsis">
+<span class="md-typeset">
+      NodeJS
+    </span>
+</span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../category/personal-project/">
+<span class="md-ellipsis">
+<span class="md-typeset">
+      Personal project
+    </span>
+</span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../category/personal/">
+<span class="md-ellipsis">
+<span class="md-typeset">
+      Personal
+    </span>
+</span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../category/ssl/">
+<span class="md-ellipsis">
+<span class="md-typeset">
+<abbr title="Secure Sockets Layer">SSL</abbr>
+</span>
+</span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../category/sysadmin/">
+<span class="md-ellipsis">
+<span class="md-typeset">
+      Sysadmin
+    </span>
+</span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../category/test-environment/">
+<span class="md-ellipsis">
+<span class="md-typeset">
+      Test environment
+    </span>
+</span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../category/uwebsocketsjs/">
+<span class="md-ellipsis">
+<span class="md-typeset">
+      uWebSockets.js
+    </span>
+</span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content md-content--post" data-md-component="content">
+<div class="md-sidebar md-sidebar--post" data-md-component="sidebar" data-md-type="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner md-post">
+<nav class="md-nav">
+<div class="md-post__back">
+<div class="md-nav__title md-nav__container">
+<a class="md-nav__link" href="../../../../">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
+<span class="md-ellipsis">
+                    Back to index
+                  </span>
+</a>
+</div>
+</div>
+<div class="md-post__authors md-typeset">
+<div class="md-profile md-post__profile">
+<span class="md-author md-author--long">
+<img alt="Jordan Breton" src="/assets/images/avatar.jpg"/>
+</span>
+<span class="md-profile__description">
+<strong>Jordan Breton</strong><br/>
+                      Creator
+                    </span>
+</div>
+</div>
+<ul class="md-post__meta md-nav__list">
+<li class="md-nav__item md-nav__title">
+<div class="md-nav__link">
+<span class="md-ellipsis">
+                    Metadata
+                  </span>
+</div>
+</li>
+<li class="md-nav__item">
+<div class="md-nav__link">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5v-5Z"></path></svg>
+<time class="md-ellipsis" datetime="2023-02-27 00:00:00">February 27, 2023</time>
+</div>
+</li>
+<li class="md-nav__item">
+<div class="md-nav__link">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9 3v15h3V3H9m3 2 4 13 3-1-4-13-3 1M5 5v13h3V5H5M3 19v2h18v-2H3Z"></path></svg>
+<span class="md-ellipsis">
+                      in
+                      
+                        <a href="../../../../category/bare-metal/">Bare metal</a>, 
+                        <a href="../../../../category/hosting/">Hosting</a>, 
+                        <a href="../../../../category/sysadmin/">Sysadmin</a></span>
+</div>
+</li>
+<li class="md-nav__item">
+<div class="md-nav__link">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7h1.5Z"></path></svg>
+<span class="md-ellipsis">
+                      
+                        10 min read
+                      
+                    </span>
+</div>
+</li>
+</ul>
+<ul class="md-nav__list">
+<li class="md-nav__item md-nav__title">
+<div class="md-nav__link">
+<span class="md-ellipsis">
+                      Related links
+                    </span>
+</div>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../28/vps-web-hosting-series-part-2-configuration/">
+<span class="md-ellipsis">
+    
+  
+    Part 2: Configuration
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../03/01/vps-web-hosting-series-part-3-maintenance-additional-notes/">
+<span class="md-ellipsis">
+    
+  
+    Part 3: Maintenance &amp; Additional Notes
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+<nav aria-label="Summary" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Summary
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#project-precisions-preparation">
+<span class="md-ellipsis">
+<span class="md-typeset">
+          Project precisions &amp; Preparation
+        </span>
+</span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#installation">
+<span class="md-ellipsis">
+<span class="md-typeset">
+          Installation
+        </span>
+</span>
+</a>
+<nav aria-label="Installation" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#first-connection-and-ubuntu-upgrade">
+<span class="md-ellipsis">
+<span class="md-typeset">
+          First connection and ubuntu upgrade
+        </span>
+</span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#securing-ssh-connection-to-the-vps">
+<span class="md-ellipsis">
+<span class="md-typeset">
+          Securing <abbr title="Secure Shell">SSH</abbr> connection to the <abbr title="Virtual Private Server">VPS</abbr>
+</span>
+</span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#upgrading-ubuntu-setting-up-automatic-upgrades">
+<span class="md-ellipsis">
+<span class="md-typeset">
+          Upgrading ubuntu &amp; setting up automatic upgrades
+        </span>
+</span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#installing-needed-packages">
+<span class="md-ellipsis">
+<span class="md-typeset">
+          Installing needed packages
+        </span>
+</span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#nvm-node">
+<span class="md-ellipsis">
+<span class="md-typeset">
+          NVM &amp; node
+        </span>
+</span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#installing-itrocks">
+<span class="md-ellipsis">
+<span class="md-typeset">
+          Installing ITRocks
+        </span>
+</span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<article class="md-content__inner md-typeset">
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="/assets/images/blog/VPS-&amp;-Web-Hosting-series/part-1.jpg"><img alt="How to configure a VPS for web hosting?" class="cover" src="/assets/images/blog/VPS-&amp;-Web-Hosting-series/part-1.jpg"/></a></p>
+<h1 id="vps-web-hosting-series-part-1-installation"><abbr title="Virtual Private Server">VPS</abbr> &amp; Web Hosting series part 1: Installation<a class="headerlink" href="#vps-web-hosting-series-part-1-installation" title="Permanent link">¶</a></h1>
+<p>Fully configuring a <abbr title="Virtual Private Server">VPS</abbr> is not that hard nor that long, but when we start our <abbr title="Information Technology (I sometimes use it to talk about Computer Science too even if it's not that accurate)">IT</abbr> journey it's an intimidating task.</p>
+<p>Today, we'll configure one from scratch (and for fun <img alt="😉" class="twemoji" src="../../../../../assets/external/cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f609.svg" title=":wink:">). Let's dream about a <strong>NodeJS</strong> application that must connect
+to a <strong>MongoDB</strong> instance hosted somewhere else. To spice-it up a little, our fictive project called <strong><abbr title="Information Technology (I sometimes use it to talk about Computer Science too even if it's not that accurate)">IT</abbr> Rocks</strong> is both
+an <strong><abbr title="Hyper Text Transfert Protocol">HTTP</abbr></strong> server and a <strong>WebSocket</strong> server. It must be able to send emails to our customers too.</img></p>
+<p>And... since it's a very serious project, it needs to be accessible within restrictive networks as well. Why? Because... what would be 
+an <abbr title="Information Technology (I sometimes use it to talk about Computer Science too even if it's not that accurate)">IT</abbr> task without a tricky part?</p>
+<!-- more -->
+<div class="admonition warning">
+<p class="admonition-title">Important</p>
+<p>A few precisions before we start:</p>
+<ol>
+<li>This is inspired by several real-world scenarios I encountered in the past few years</li>
+<li>This tutorial is an <strong>advanced</strong> one.</li>
+<li>I tried my best to write it in a way that <strong>should</strong> allow a beginner not to be lost and reproduce every step without struggling too much</li>
+<li>This is not only once of those <strong>How to?</strong> article you may be used to read, it's also a <strong>Why?</strong> article. It means that I tried to justify why some 
+   decisions have been taken for you to understand that tools and choices are not default ones. They have been thought to fit the project's requirements.</li>
+</ol>
+<p>As a consequence, despite my efforts to make it as short and digest as possible, it is quite long and detailed. But so are all real-case <abbr title="Information Technology (I sometimes use it to talk about Computer Science too even if it's not that accurate)">IT</abbr> scenarios we encounter in our jobs.</p>
+<p>If you're a beginner, you should find here some valuable information and resources that are not that easy to find and compile by yourself. But it comes at a cost:
+you'll have to invest some time and efforts to understand everything. If something is unclear or if you have a question... just leave a comment :)</p>
+</div>
+<p>This is the first part of a series:</p>
+<ol>
+<li><a class="current-page" href="/blog/2023/02/27/vps-web-hosting-series-part-1-installation/"><abbr title="Virtual Private Server">VPS</abbr> &amp; Web Hosting series part 1: Installation</a></li>
+<li><a href="/blog/2023/02/28/vps-web-hosting-series-part-2-configuration/"><abbr title="Virtual Private Server">VPS</abbr> &amp; Web Hosting series part 2: Configuration</a></li>
+<li><a href="/blog/2023/03/01/vps-web-hosting-series-part-3-maintenance-additional-notes/"><abbr title="Virtual Private Server">VPS</abbr> &amp; Web Hosting series part 3: Maintenance &amp; additional notes</a></li>
+</ol>
+<h2 id="project-precisions-preparation">Project precisions &amp; Preparation<a class="headerlink" href="#project-precisions-preparation" title="Permanent link">¶</a></h2>
+<p>First of all, we need a <a href="/blog" target="_blank"><strong><abbr title="Virtual Private Server">VPS</abbr></strong> (Virtual Private Server) up and running</a> to connect to.</p>
+<p id="requirements-list">To sum up the needs defined in the intro and for clarity sakes, there are the requirements:</p>
+<ul>
+<li>NodeJS application</li>
+<li><abbr title="Hyper Text Transfert Protocol">HTTP</abbr> server with <a href="https://www.npmjs.com/package/express" target="_blank" rel="noopener">express</a></li>
+<li>WebSocket server with <a href="https://github.com/uNetworking/uWebSockets.js/" target="_blank" rel="noopener">uWebSocket.js</a></li>
+<li>Sends mails</li>
+<li>Connects to distant <strong>MongoDB</strong> database service.</li>
+<li>Accessible in <strong>restrictive networks</strong> (enterprise, schools, etc.)</li>
+<li>The project sources are hosted in a Github <strong>private</strong> repository, with two branches:<ul>
+<li><code>main</code></li>
+<li><code>release</code> (the one we want to use on the <abbr title="Virtual Private Server">VPS</abbr>)</li>
+</ul>
+</li>
+</ul>
+<details class="note">
+<summary>About <em>express</em> and <em>uWebSocket.js</em></summary>
+<p>This is not as uncommon as it seems to encounter a scenario like this. You can read more about <em>express</em> and <em>uWebSocket.js</em>
+configuration pitfalls <a href="/writing">there</a>, but not to make this tutorial too long, I'll sum it up in one sentence:</p>
+<p><strong>Express</strong> and <strong>uWebSocket.js</strong> are <strong>incompatible</strong>. It means that <strong>ITRocks</strong> <strong>needs</strong> two open ports. It's important
+because of the <em>"accessible in restrictive networks"</em> requirement.</p>
+</details>
+<p>Now, it's time to roll up our sleeves and start typing on our beautiful keyboard <img alt="😉" class="twemoji" src="../../../../../assets/external/cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f609.svg" title=":wink:"></p>
+<h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">¶</a></h2>
+<p>The first thing to do is obviously to connect to our <abbr title="Virtual Private Server">VPS</abbr> to install the tools we need.</p>
+<p>We ordered our <strong><abbr title="Virtual Private Server">VPS</abbr></strong> few minutes ago, and since our provider is as fast and efficient as our beautiful application,
+we already received an email with the following information:</p>
+<div class="annotate">
+<blockquote>
+<p>Dear customer,</p>
+<p><code>Ubuntu 20.04</code> operating system has been installed on the <abbr title="Virtual Private Server">VPS</abbr> you ordered:</p>
+<ul>
+<li>IPv4 address: <code>156.225.137.143</code> (1)</li>
+<li><abbr title="Virtual Private Server">VPS</abbr> name: <code>ac78ef7.vps.provider.com</code> (2)</li>
+</ul>
+<p>The admin account configured on your <abbr title="Virtual Private Server">VPS</abbr> is:</p>
+<ul>
+<li>User: <code>ubuntu</code> (3)</li>
+<li>Password: <code>Ohb78@hioude!ma09k</code> (4)</li>
+</ul>
+</blockquote>
+</div>
+<ol>
+<li>This is a <strong>fictive</strong> IPv4</li>
+<li>This is a <strong>fictive</strong> domain</li>
+<li>This is a <strong>fictive</strong> username</li>
+<li>This is a <strong>fictive</strong> password</li>
+</ol>
+<div class="admonition danger">
+<p class="admonition-title">Please, <ins>DO NOT</ins> use the above credentials as is. <ins>CHANGE THEM</ins>!</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">The following tutorial should work for Ubuntu Server 22.04 as well. If you use another distribution, the following tutorial may not be accurate nor relevant anymore.</p>
+</div>
+<h3 id="first-connection-and-ubuntu-upgrade">First connection and ubuntu upgrade<a class="headerlink" href="#first-connection-and-ubuntu-upgrade" title="Permanent link">¶</a></h3>
+<p>Let's connect to the server for the first time through <strong><abbr title="Secure Shell">SSH</abbr></strong> with the command <code>ssh [user]@[ip]</code> or <code>ssh [user]@[domain]</code>. For the current <abbr title="Virtual Private Server">VPS</abbr>,
+the exact command using the IP address is:</p>
+<p no-linenums="no-linenums"><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#True-0-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="True-0-1" name="True-0-1"></a>ssh<span class="w"> </span>ubuntu@156.225.137.143
+</code></pre></div></td></tr></table></div></p>
+<div class="admonition note">
+<p class="admonition-title">The first time, it will print you a warning because of self-signed certificate, just accept it.</p>
+</div>
+<p>Then type the server password.</p>
+<h3 id="securing-ssh-connection-to-the-vps">Securing <abbr title="Secure Shell">SSH</abbr> connection to the <abbr title="Virtual Private Server">VPS</abbr><a class="headerlink" href="#securing-ssh-connection-to-the-vps" title="Permanent link">¶</a></h3>
+<p>Once logged in, we <strong>must</strong> start by <strong>changing the admin password</strong>, since it has been provided in cleartext by mail,
+its security maybe compromised already, or maybe compromised later.</p>
+<p no-linenums="no-linenums"><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#True-1-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="True-1-1" name="True-1-1"></a>sudo<span class="w"> </span>passwd<span class="w"> </span>ubuntu
+</code></pre></div></td></tr></table></div></p>
+<p>Now, the first thing we want to do is disabling <strong><abbr title="Secure Shell">SSH</abbr></strong> password login to prefer a <strong>private key</strong> secured by <strong>a passphrase</strong>.
+This reduces risks of a successful brute-force attack to 0. And your <abbr title="Secure Shell">SSH</abbr> login should remain secure as long as the machine you keep
+this private key on stays secure too.</p>
+<div class="admonition warning">
+<p class="admonition-title">For the whole tutorial, I'll assume that you're operating from an ubuntu local machine. If it is not the case, please adapt local commands to your operating system.</p>
+</div>
+<p no-linenums="no-linenums"><div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">On local machine</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#True-2-1">1</a></span>
+<span class="normal"><a href="#True-2-2">2</a></span>
+<span class="normal"><a href="#True-2-3">3</a></span>
+<span class="normal"><a href="#True-2-4">4</a></span>
+<span class="normal"><a href="#True-2-5">5</a></span>
+<span class="normal"><a href="#True-2-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="True-2-1" name="True-2-1"></a><span class="c1"># generate a new key pair (1)</span>
+<a id="True-2-2" name="True-2-2"></a>ssh-keygen<span class="w"> </span>-t<span class="w"> </span>ed25519
+<a id="True-2-3" name="True-2-3"></a>
+<a id="True-2-4" name="True-2-4"></a><span class="c1"># install the public key on the remote server</span>
+<a id="True-2-5" name="True-2-5"></a><span class="c1"># Will ask the password we redefined above</span>
+<a id="True-2-6" name="True-2-6"></a>ssh-copy-id<span class="w"> </span>-i<span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/.ssh/id_ed25519.pub<span class="w"> </span>ubuntu@156.225.137.143
+</code></pre></div></td></tr></table></div></p>
+<ol>
+<li>At this step, you will be given the option to setup a passphrase or not. Keep the habit to <strong>always</strong> define a passphrase. It makes your private key much harder to steal.</li>
+</ol>
+<p>Then, try to connect to your <strong><abbr title="Virtual Private Server">VPS</abbr></strong> with the command <code>ssh ubuntu@156.225.137.143</code>. Your <strong>operating system</strong> will ask you the
+<strong>passphrase</strong> you chose while generating the certificates, but if the operation was successful, the <strong><abbr title="Secure Shell">SSH</abbr></strong> client will not ask you the <code>ubuntu</code>
+password.</p>
+<p>Now, we want to prevent anyone from accessing the server with any password, to enforce keys usage, as well as forbid entirely root login. 
+Let's create a new ssh config file:</p>
+<p no-linenums="no-linenums"><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#True-3-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="True-3-1" name="True-3-1"></a>sudo<span class="w"> </span>nano<span class="w"> </span>/etc/ssh/sshd_config.d/disable-password-authentication.conf
+</code></pre></div></td></tr></table></div></p>
+<p>With the following content:</p>
+<p no-linenums="no-linenums"><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#True-4-1">1</a></span>
+<span class="normal"><a href="#True-4-2">2</a></span>
+<span class="normal"><a href="#True-4-3">3</a></span>
+<span class="normal"><a href="#True-4-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="True-4-1" name="True-4-1"></a>ChallengeResponseAuthentication no
+<a id="True-4-2" name="True-4-2"></a>PasswordAuthentication no
+<a id="True-4-3" name="True-4-3"></a>UsePAM no
+<a id="True-4-4" name="True-4-4"></a>PermitRootLogin no
+</code></pre></div></td></tr></table></div></p>
+<p>Type <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-s">S</kbd></span> to save and <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-x">X</kbd></span> to exit.</p>
+<p>Then, we need to reload the <abbr title="Secure Shell">SSH</abbr> server and the <abbr title="Secure Shell">SSH</abbr> daemon:</p>
+<p no-linenums="no-linenums"><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#True-5-1">1</a></span>
+<span class="normal"><a href="#True-5-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="True-5-1" name="True-5-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>reload<span class="w"> </span>ssh
+<a id="True-5-2" name="True-5-2"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>reload<span class="w"> </span>sshd
+</code></pre></div></td></tr></table></div></p>
+<p>Test time. Trying to log with root user should be always rejected, so:</p>
+<p no-linenums="no-linenums"><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#True-6-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="True-6-1" name="True-6-1"></a>ssh<span class="w"> </span>root@156.225.137.143
+</code></pre></div></td></tr></table></div></p>
+<p>Must print <code>Permission denied (publickey).</code>, and:</p>
+<p no-linenums="no-linenums"><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#True-7-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="True-7-1" name="True-7-1"></a>ssh<span class="w"> </span>ubuntu@156.225.137.143<span class="w"> </span>-o<span class="w"> </span><span class="nv">PubkeyAuthentication</span><span class="o">=</span>no<span class="w"> </span><span class="c1">#(1)!</span>
+</code></pre></div></td></tr></table></div></p>
+<ol>
+<li>This option allow us to disable automatic key based authentication to request a password authentication</li>
+</ol>
+<p>Must print <code>Permission denied (publickey).</code> too.</p>
+<h3 id="upgrading-ubuntu-setting-up-automatic-upgrades">Upgrading ubuntu &amp; setting up automatic upgrades<a class="headerlink" href="#upgrading-ubuntu-setting-up-automatic-upgrades" title="Permanent link">¶</a></h3>
+<p>Now that we successfully secured <strong><abbr title="Secure Shell">SSH</abbr></strong> access to our <strong><abbr title="Virtual Private Server">VPS</abbr></strong>, let's login once more to upgrade <em>ubuntu</em>:</p>
+<p no-linenums="no-linenums"><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#True-8-1">1</a></span>
+<span class="normal"><a href="#True-8-2">2</a></span>
+<span class="normal"><a href="#True-8-3">3</a></span>
+<span class="normal"><a href="#True-8-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="True-8-1" name="True-8-1"></a>ssh<span class="w"> </span>ubuntu@156.225.137.143
+<a id="True-8-2" name="True-8-2"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
+<a id="True-8-3" name="True-8-3"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>upgrade
+<a id="True-8-4" name="True-8-4"></a>sudo<span class="w"> </span>reboot
+</code></pre></div></td></tr></table></div></p>
+<div class="admonition note">
+<p class="admonition-title">Rebooting may or may not be mandatory, so we just go with it anyway.</p>
+</div>
+<p>Since we don't want to connect every day just to update the server to get security fixes, we will use 
+the <code>unattended-upgrades</code> package that will take care of that for us:</p>
+<p no-linenums="no-linenums"><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#True-9-1">1</a></span>
+<span class="normal"><a href="#True-9-2">2</a></span>
+<span class="normal"><a href="#True-9-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="True-9-1" name="True-9-1"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
+<a id="True-9-2" name="True-9-2"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>upgrade
+<a id="True-9-3" name="True-9-3"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>unattended-upgrades
+</code></pre></div></td></tr></table></div></p>
+<p>Then we must enable it:</p>
+<p no-linenums="no-linenums"><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#True-10-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="True-10-1" name="True-10-1"></a>sudo<span class="w"> </span>dpkg-reconfigure<span class="w"> </span>-plow<span class="w"> </span>unattended-upgrades
+</code></pre></div></td></tr></table></div></p>
+<p>Just choose <code>yes</code> and press <span class="keys"><kbd class="key-enter">Enter</kbd></span>.</p>
+<p>We <strong>do not</strong> turn on automatic reboot, because we may want to reboot at a specific point in time. <strong>ITRocks</strong> may want
+to schedule a maintenance downtime, for example.</p>
+<h3 id="installing-needed-packages">Installing needed packages<a class="headerlink" href="#installing-needed-packages" title="Permanent link">¶</a></h3>
+<p>Let's install what we need to run <strong><abbr title="Information Technology (I sometimes use it to talk about Computer Science too even if it's not that accurate)">IT</abbr> Rocks</strong> behind an Apache proxy:</p>
+<p no-linenums="no-linenums"><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#True-11-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="True-11-1" name="True-11-1"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>apache2<span class="w"> </span>npm<span class="w"> </span>certbot<span class="w"> </span>python3-certbot-apache<span class="w"> </span>fail2ban<span class="w"> </span>iptables-persistent
+</code></pre></div></td></tr></table></div></p>
+<div class="admonition note">
+<p class="admonition-title">The package iptables-persistent may ask you if you want to save the current <code>ipv4</code> or <code>ìpv6</code> config. The answer doesn't matter, since we will redefine them later anyway.</p>
+</div>
+<details class="question">
+<summary>Wait... what are all those packages?</summary>
+<p>It looks like we're installing a bunch of software, let's explain what is what:</p>
+<table>
+<thead>
+<tr>
+<th>package</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>apache2</code></td>
+<td>An <abbr title="Hyper Text Transfert Protocol">HTTP</abbr> server and will be our proxy. It could have been <code>NGinx</code> or <code>Caddy</code> too, for example.</td>
+</tr>
+<tr>
+<td><code>npm</code></td>
+<td>The NodeJS Package Manager, needed to fetch our project's dependencies.</td>
+</tr>
+<tr>
+<td><code>certbot</code></td>
+<td>A utility that is useful to manage (generate/install/renew/revoke) <abbr title="Secure Sockets Layer">SSL</abbr> certificates signed by Let's Encrypt.</td>
+</tr>
+<tr>
+<td><code>python3-certbot-apache</code></td>
+<td>A Certbot plugin to work with Apache. It will automatically setup Apache configuration for us in a blink.</td>
+</tr>
+<tr>
+<td><code>fail2ban</code></td>
+<td>A log analyzer that works with the firewall to ban suspicious activities.</td>
+</tr>
+<tr>
+<td><code>iptables-persistent</code></td>
+<td>A utility that will persist our firewall configuration.</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="question">
+<summary>Why do we need a proxy?</summary>
+<p>It seems that the time has come to discuss what we'll install on this server to fulfill our <a href="#requirements-list">requirements list</a>.
+The most important information in this requirements list now is the need for <strong>2 open ports</strong> <ins>and</ins> the need for access in <strong>most restrictive networks</strong>.
+But what actually are restrictive networks? Why is that important?</p>
+<p>If at home your gateway (the device that connects your home network to the Internet) do not restrict your online activities,
+in an enterprise or school network the gateway firewall will most likely block the inbound and outbound traffic on almost every
+port. Not so long ago, it left two ports open to the Internet: </p>
+<ul>
+<li>80 (<abbr title="Hyper Text Transfert Protocol">HTTP</abbr>)</li>
+<li>443 (HTTPS)</li>
+</ul>
+<p>Since port 80 is <strong>insecure</strong> and <strong><abbr title="Secure Sockets Layer">SSL</abbr></strong> certificates free for years now thanks to our savior <a href="https://letsencrypt.org/">Let's Encrypt</a>,
+port <strong>80</strong> almost disappeared from most of the firewalls' configurations. As such, it leaves us with... port <strong>443</strong>. However, our wonderful
+application still needs two open ports.</p>
+<p>It looks like we're screwed, isn't it?</p>
+<p>Not even close. God bless <strong>proxies</strong>!</p>
+<p>If you don't know what a proxy is: it's something that acts like an interface between two other things. When it receives a request,
+it will not answer it himself but rather will forward the request to another service to get the answer, and then send it back to the requester.</p>
+<p>So we can set up a proxy that will expose only one <strong>public port</strong> (443 in our case), and route the traffic on two <strong>private ports</strong> on which 
+our <strong>ITRocks</strong> server will be listening. Another welcome benefit is that you can reload the proxy when <abbr title="Secure Sockets Layer">SSL</abbr> certificates are renewed without
+closing ongoing connections. Pretty cool, huh?</p>
+</details>
+<h3 id="nvm-node">NVM &amp; node<a class="headerlink" href="#nvm-node" title="Permanent link">¶</a></h3>
+<p>Then we'll need <strong>nvm</strong> to manage <strong>NodeJS</strong> versions on the same machine, it will ease switching version later if needed:</p>
+<p no-linenums="no-linenums"><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#True-12-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="True-12-1" name="True-12-1"></a>wget<span class="w"> </span>-qO-<span class="w"> </span>https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>bash
+</code></pre></div></td></tr></table></div></p>
+<div class="admonition note">
+<p class="admonition-title">This command downloads the last <code>nvm</code> version <strong>at the moment this document has been written</strong>, to install the last version, please read the <a href="https://github.com/nvm-sh/nvm#install--update-script" target="_blank" rel="noopener">install section of their GitHub</a>.</p>
+</div>
+<p>Then we install the version of <strong>NodeJS</strong> that will run our server. <code>Hydrogen</code> is the last <strong>LTS</strong> (v18.14.2) version at the moment this document has been written:</p>
+<p no-linenums="no-linenums"><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#True-13-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="True-13-1" name="True-13-1"></a>nvm<span class="w"> </span>install<span class="w"> </span>Hydrogen
+</code></pre></div></td></tr></table></div></p>
+<p>While writing this doc, <strong>Hydrogen</strong> downloads the <strong>v18.14.2</strong>.</p>
+<div class="admonition note">
+<p class="admonition-title">You can use <code>nvm ls-remote</code> to print all available versions of node, and use <code>nvm ls-remote | grep LTS</code> to filter LTS versions only.</p>
+</div>
+<p>It will be set to <code>default</code>, you can check node version with <code>node -v</code>. If it doesn't print the version you installed, run the commands:</p>
+<p no-linenums="no-linenums"><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#True-14-1">1</a></span>
+<span class="normal"><a href="#True-14-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="True-14-1" name="True-14-1"></a>nvm<span class="w"> </span><span class="nb">alias</span><span class="w"> </span>default<span class="w"> </span>v18.14.2
+<a id="True-14-2" name="True-14-2"></a>nvm<span class="w"> </span>use<span class="w"> </span>v18.14.2
+</code></pre></div></td></tr></table></div></p>
+<p>Then, <code>node -v</code> should print <code>v18.14.2</code></p>
+<div class="admonition warning">
+<p class="admonition-title">Very important note</p>
+<p>If a <strong>Github Action</strong> is configured for the current server, you must follow <a href="#github-automation">additional instructions</a>
+for this version change to take effect when the <strong>Github Action</strong> will run <code>npm install</code> !</p>
+<p>For now, it shouldn't. But if you come back later or if you didn't follow all steps and encounter strange error messages
+while trying to run a <strong>Github Action</strong>, carefully read the above link.</p>
+</div>
+<h3 id="installing-itrocks">Installing ITRocks<a class="headerlink" href="#installing-itrocks" title="Permanent link">¶</a></h3>
+<p>We start by creating a folder in ubuntu's home folder <code>/home/ubuntu</code>:</p>
+<p no-linenums="no-linenums"><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#True-15-1">1</a></span>
+<span class="normal"><a href="#True-15-2">2</a></span>
+<span class="normal"><a href="#True-15-3">3</a></span>
+<span class="normal"><a href="#True-15-4">4</a></span>
+<span class="normal"><a href="#True-15-5">5</a></span>
+<span class="normal"><a href="#True-15-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="True-15-1" name="True-15-1"></a><span class="nb">cd</span><span class="w"> </span>~
+<a id="True-15-2" name="True-15-2"></a>mkdir<span class="w"> </span>ITRocks
+<a id="True-15-3" name="True-15-3"></a><span class="nb">cd</span><span class="w"> </span>ITRocks
+<a id="True-15-4" name="True-15-4"></a>git<span class="w"> </span>init
+<a id="True-15-5" name="True-15-5"></a>git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>origin<span class="w"> </span>git@github.com:example/ITRocks.git
+<a id="True-15-6" name="True-15-6"></a>git<span class="w"> </span>config<span class="w"> </span>core.fileMode<span class="w"> </span><span class="nb">false</span>
+</code></pre></div></td></tr></table></div></p>
+<details class="question">
+<summary><code>git config core.fileMode false</code>, is this git sorcery?</summary>
+<p>The command <code>git config core.fileMode false</code> is mandatory to <strong>avoid</strong> git to track <strong>local file system permissions changes</strong>. </p>
+<p>If you don't run this command, when the git hooks that we will set up below will change group ownership of all files, 
+git will later prevent to checkout/pull before stashing or committing.</p>
+</details>
+<p>Now, we need to create a <code>deploy token</code> to be able to pull, since the repository is private (do not change generated file path/name, you don't need a passphrase):</p>
+<p no-linenums="no-linenums"><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#True-16-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="True-16-1" name="True-16-1"></a>ssh-keygen<span class="w"> </span>-t<span class="w"> </span>rsa<span class="w"> </span>-b<span class="w"> </span><span class="m">4096</span><span class="w"> </span>-C<span class="w"> </span>example@itrocks.com
+</code></pre></div></td></tr></table></div></p>
+<p>Then we will configure the key for git:</p>
+<p no-linenums="no-linenums"><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#True-17-1">1</a></span>
+<span class="normal"><a href="#True-17-2">2</a></span>
+<span class="normal"><a href="#True-17-3">3</a></span>
+<span class="normal"><a href="#True-17-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="True-17-1" name="True-17-1"></a><span class="nb">cd</span><span class="w"> </span>../.ssh
+<a id="True-17-2" name="True-17-2"></a>mv<span class="w"> </span>id_rsa<span class="w"> </span>ITRocks.deploy.pem
+<a id="True-17-3" name="True-17-3"></a>chmod<span class="w"> </span><span class="m">400</span><span class="w"> </span>ITRocks.deploy.pem
+<a id="True-17-4" name="True-17-4"></a>nano<span class="w"> </span>config
+</code></pre></div></td></tr></table></div></p>
+<p>Type this into the file editor:</p>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">/home/ubuntu/.ssh/config</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#True-18-1">1</a></span>
+<span class="normal"><a href="#True-18-2">2</a></span>
+<span class="normal"><a href="#True-18-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="True-18-1" name="True-18-1"></a>Host ITRocks
+<a id="True-18-2" name="True-18-2"></a>Hostname github.com
+<a id="True-18-3" name="True-18-3"></a>IdentityFile ~/.ssh/ITRocks.deploy.pem
+</code></pre></div></td></tr></table></div>
+<p>Then type <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-s">S</kbd></span> to save and <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-x">X</kbd></span> to exit.</p>
+<p>We want to adapt permissions to this file as well:</p>
+<p no-linenums="no-linenums"><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#True-19-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="True-19-1" name="True-19-1"></a>chmod<span class="w"> </span><span class="m">770</span><span class="w"> </span>config
+</code></pre></div></td></tr></table></div></p>
+<p>Now, you need to copy the content of <code>id_rsa.pub</code>. You can use the Linux <code>scp</code> command from another terminal to download it, or just print it to the console to be able to copy it into your clipboard:</p>
+<p no-linenums="no-linenums"><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#True-20-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="True-20-1" name="True-20-1"></a>cat<span class="w"> </span>id_rsa.pub
+</code></pre></div></td></tr></table></div></p>
+<p>The public key must be set as <code>deploy key</code> on <code>GitHub</code>. To do so, go to the project repository, click on the <code>settings</code> in the top tabs, then choose <code>Deploy Keys</code> in the left panel, and click the <code>Add deploy key</code> button, top right.</p>
+<p>Type a meaningful name as <code>Public production key on [Provider] VPS</code> as title, and paste the previously copied <code>ìd_rsa.pub</code> file content into the <code>key</code> field. <strong>Do not check the <code>Allow write access</code> checkbox</strong> for security sakes.</p>
+<p>Once done, come back to your <strong><abbr title="Secure Shell">SSH</abbr></strong> terminal and type :</p>
+<p no-linenums="no-linenums"><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#True-21-1">1</a></span>
+<span class="normal"><a href="#True-21-2">2</a></span>
+<span class="normal"><a href="#True-21-3">3</a></span>
+<span class="normal"><a href="#True-21-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="True-21-1" name="True-21-1"></a><span class="nb">cd</span><span class="w"> </span>~/ITRocks
+<a id="True-21-2" name="True-21-2"></a>git<span class="w"> </span>config<span class="w"> </span>core.sshCommand<span class="w"> </span><span class="s1">'ssh -i /home/ubuntu/.ssh/ITRocks.deploy.pem'</span>
+<a id="True-21-3" name="True-21-3"></a>git<span class="w"> </span>pull
+<a id="True-21-4" name="True-21-4"></a>git<span class="w"> </span>checkout<span class="w"> </span>release
+</code></pre></div></td></tr></table></div></p>
+<p>And... we've done for the installation process \o/</p>
+<p>Now, it's configuration time, in the <a href="/blog/2023/02/28/vps-web-hosting-series-part-2-configuration/">second part</a>
+ of this series <img alt="😉" class="twemoji" src="../../../../../assets/external/cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f609.svg" title=":wink:"></p>
+<aside class="md-source-file">
+<span class="md-source-file__fact">
+<span class="md-icon" title="Contributors">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2Z"></path></svg>
+</span>
+<span>GitHub</span>
+<nav>
+<a class="md-author" href="https://github.com/jordan-breton" title="@jordan-breton">
+<img alt="jordan-breton" src="../../../../../assets/external/avatars.githubusercontent.com/u/11458097.5aea0b69.jpg">
+</a>
+</nav>
+</span>
+</aside>
+<form class="md-feedback" hidden="" name="feedback">
+<fieldset>
+<legend class="md-feedback__title">
+        Did you like this content?
+      </legend>
+<div class="md-feedback__inner">
+<div class="md-feedback__list">
+<button class="md-feedback__icon md-icon" data-md-value="1" title="Yes, I would want to see more of this!" type="submit">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m12 21.35-1.45-1.32C5.4 15.36 2 12.27 2 8.5 2 5.41 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.08C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.41 22 8.5c0 3.77-3.4 6.86-8.55 11.53L12 21.35Z"></path></svg>
+</button>
+<button class="md-feedback__icon md-icon" data-md-value="0" title="Not my cup of tea :/" type="submit">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m12 21.35-1.45-1.32C5.4 15.36 2 12.27 2 8.5 2 5.41 4.42 3 7.5 3c.67 0 1.32.12 1.94.33L13 9.35l-4 5 3 7M16.5 3C19.58 3 22 5.41 22 8.5c0 3.77-3.4 6.86-8.55 11.53L12 21.35l-1-7 4.5-5-2.65-5.08C13.87 3.47 15.17 3 16.5 3Z"></path></svg>
+</button>
+</div>
+<div class="md-feedback__note">
+<div data-md-value="1" hidden="">
+              
+              
+                
+              
+              Thanks for your feedback!
+            </div>
+<div data-md-value="0" hidden="">
+              
+              
+                
+              
+              Thanks for your feedback! Feels free to reach me about it using my  <a href="https://github.com/jordan-breton/it-journey-website-giscus/issues/new/?title=%5BFeedback%5D+VPS%20%26amp%3B%20Web%20Hosting%20series%20part%201%3A%20Installation+-+/blog/2023/02/27/vps-web-hosting-series-part-1-installation/" rel="noopener" target="_blank">
+    feedback form
+</a>.
+            </div>
+</div>
+</div>
+</fieldset>
+</form>
+<h2 id="__comments">Comments</h2>
+<script async="" crossorigin="anonymous" data-category="General" data-category-id="DIC_kwDOI-qeG84CUQPM" data-emit-metadata="0" data-input-position="top" data-lang="en" data-loading="lazy" data-mapping="url" data-reactions-enabled="1" data-repo="jordan-breton/it-journey-website-giscus" data-repo-id="R_kgDOI-qeGw" data-strict="1" data-theme="preferred_color_scheme" src="https://giscus.app/client.js">
+</script>
+<!-- Synchronize Giscus theme with palette -->
+<script>
+	(() => {
+		const giscus = document.querySelector("script[src*=giscus]")
+
+		/* Set palette on initial load */
+		const palette = __md_get("__palette")
+		if (palette && typeof palette.color === "object") {
+			const theme = palette.color.scheme === "slate" ? "dark" : "light"
+			giscus.setAttribute("data-theme", theme)
+		}
+
+		/* Register event handlers after documented loaded */
+		document.addEventListener("DOMContentLoaded", function() {
+			const ref = document.querySelector("[data-md-component=palette]")
+			ref.addEventListener("change", function() {
+				const palette = __md_get("__palette")
+				if (palette && typeof palette.color === "object") {
+					const theme = palette.color.scheme === "slate" ? "dark" : "light"
+
+					/* Instruct Giscus to change theme */
+					let frame = document.querySelector(".giscus-frame")
+					frame.contentWindow.postMessage(
+						{ giscus: { setConfig: { theme } } },
+						"https://giscus.app"
+					)
+				}
+			})
+		})
+	})()
+</script>
+</article>
+</div>
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+</div>
+<a class="md-top md-icon" data-md-component="top" hidden="" href="#">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"></path></svg>
+            Back to top
+          </a>
+</main>
+<footer class="md-footer">
+<nav aria-label="Footer" class="md-footer__inner md-grid">
+<a aria-label="Previous: VPS &amp;amp; Web Hosting Series: Bare-metal setup from start to end" class="md-footer__link md-footer__link--prev" href="../../25/vps-web-hosting-series-bare-metal-setup-from-start-to-end/" rel="prev">
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
+</div>
+<div class="md-footer__title">
+<div class="md-ellipsis">
+<span class="md-footer__direction">
+                  Previous
+                </span>
+					VPS &amp; Web Hosting Series: Bare-metal setup from start to end
+				</div>
+</div>
+</a>
+<a aria-label="Next: VPS &amp;amp; Web Hosting series part 2: Configuration" class="md-footer__link md-footer__link--next" href="../../28/vps-web-hosting-series-part-2-configuration/" rel="next">
+<div class="md-footer__title">
+<div class="md-ellipsis">
+<span class="md-footer__direction">
+                  Next
+                </span>
+					VPS &amp; Web Hosting series part 2: Configuration
+				</div>
+</div>
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"></path></svg>
+</div>
+</a>
+</nav>
+<div class="md-typeset md-grid">
+<hr/>
+</div>
+<div class="md-footer-custom md-typeset">
+<div class="md-footer-custom__inner md-grid">
+<div class="md-foot-custom-col">
+<a aria-label="IT Journey" class="md-header__button md-logo" data-md-component="logo" href="../../../../.." title="IT Journey">
+<img alt="logo" src="../../../../../assets/images/logo-xs.png"/>
+</a>
+<div class="col-wrapper">
+<h5>IT Journey</h5>
+<menu>
+<li><a href="/">Home</a></li>
+<li><a href="/blog">Blog</a></li>
+</menu>
+</div>
+</div>
+<div class="md-foot-custom-col">
+<h5>About</h5>
+<menu>
+<li><a href="/abaout/skill-set">Skill set</a></li>
+<li><a href="/about/roadmap">Certifications roadmap</a></li>
+<li><a href="/about/history">History</a></li>
+</menu>
+</div>
+<div class="md-foot-custom-col">
+<h5>Useful links</h5>
+<menu>
+<li><a href="/terms-and-conditions/#article-9-confidentiality">Privacy policy</a></li>
+<li><a href="/terms-and-conditions">Terms and conditions</a></li>
+</menu>
+</div>
+<div class="md-foot-custom-col buttons">
+<a class="md-button md-button--primary" href="/about#contact">
+<span class="md-icon"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m20 8-8 5-8-5V6l8 5 8-5m0-2H4c-1.11 0-2 .89-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Z"></path></svg></span>
+<span>Contact me</span>
+</a>
+<a class="md-button md-button--primary" href="https://it-journey.com/feed_rss_created.xml">
+<span class="md-icon"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19 7.38 20 6.18 20 5 20 4 19 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1Z"></path></svg></span>
+<span>RSS Feeds</span>
+</a>
+</div>
+</div>
+</div>
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-copyright">
+<div class="md-copyright__highlight">
+      Copyright © 2023 Jordan Breton – <a href="#__consent">Change cookie settings</a>
+</div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" rel="noopener" target="_blank">
+      Material for MkDocs Insiders
+    </a>
+</div>
+<div class="md-social">
+<a class="md-social__link" href="https://www.linkedin.com/in/jordan-breton-281088267/" rel="noopener" target="_blank" title="www.linkedin.com">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"></path></svg>
+</a>
+<a class="md-social__link" href="https://twitter.com/JordanBretonIT" rel="noopener" target="_blank" title="twitter.com">
+<svg viewbox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"></path></svg>
+</a>
+<a class="md-social__link" href="https://github.com/jordan-breton" rel="noopener" target="_blank" title="github.com">
+<svg viewbox="0 0 496 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg>
+</a>
+<a class="md-social__link" href="https://framagit.org/" rel="noopener" target="_blank" title="framagit.org">
+<svg viewbox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="m503.5 204.6-.7-1.8-69.7-181.78c-1.4-3.57-3.9-6.59-7.2-8.64-2.4-1.55-5.1-2.515-8-2.81-2.9-.295-5.7.083-8.4 1.11-2.7 1.02-5.1 2.66-7.1 4.78-1.9 2.12-3.3 4.67-4.1 7.44l-47 144H160.8l-47.1-144c-.8-2.77-2.2-5.31-4.1-7.43-2-2.12-4.4-3.75-7.1-4.77a18.1 18.1 0 0 0-8.38-1.113 18.4 18.4 0 0 0-8.04 2.793 18.09 18.09 0 0 0-7.16 8.64L9.267 202.8l-.724 1.8a129.57 129.57 0 0 0-3.52 82c7.747 26.9 24.047 50.7 46.447 67.6l.27.2.59.4 105.97 79.5 52.6 39.7 32 24.2c3.7 1.9 8.3 4.3 13 4.3 4.7 0 9.3-2.4 13-4.3l32-24.2 52.6-39.7 106.7-79.9.3-.3c22.4-16.9 38.7-40.6 45.6-67.5 8.6-27 7.4-55.8-2.6-82z"></path></svg>
+</a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<div class="md-dialog" data-md-component="dialog">
+<div class="md-dialog__inner md-typeset"></div>
+</div>
+<div class="md-consent" data-md-component="consent" hidden="" id="__consent">
+<div class="md-consent__overlay"></div>
+<aside class="md-consent__inner">
+<form class="md-consent__form md-grid md-typeset" name="consent">
+<h4>Cookie consent</h4>
+<p>I use cookies to recognize your repeated visits and preferences, as well as to measure the relevance of my content and whether users find what they're searching for. With your consent, you're helping me to create better content.</p>
+<input class="md-toggle" id="__settings" type="checkbox"/>
+<div class="md-consent__settings">
+<ul class="task-list">
+<li class="task-list-item">
+<label class="task-list-control">
+<input checked="" name="analytics" type="checkbox"/>
+<span class="task-list-indicator"></span>
+          Google Analytics
+        </label>
+</li>
+<li class="task-list-item">
+<label class="task-list-control">
+<input checked="" name="github" type="checkbox"/>
+<span class="task-list-indicator"></span>
+          GitHub
+        </label>
+</li>
+</ul>
+</div>
+<div class="md-consent__controls">
+<button class="md-button md-button--primary">Accept</button>
+<label class="md-button" for="__settings">Manage settings</label>
+</div>
+</form>
+</aside>
+</div>
+<script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout(function(){document.querySelector("[data-md-component=consent]").hidden=!1},250);var action,form=document.forms.consent;for(action of["submit","reset"])form.addEventListener(action,function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map(function(e){return[e,!0]}))),location.hash="",location.reload()})</script>
+<script id="__config" type="application/json">{"base": "../../../../..", "features": ["content.code.annotate", "content.code.copy", "content.code.select", "content.tooltips", "navigation.tracking", "navigation.indexes", "navigation.expand", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.path", "navigation.footer", "search.suggest", "search.highlight", "search.share", "toc.integrate", "toc.follow"], "search": "../../../../../assets/javascripts/workers/search.6c7302c4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+<script src="../../../../../assets/javascripts/bundle.96d2b699.min.js"></script>
+<script src="../../../../../js/timeago.min.js"></script>
+<script src="../../../../../js/timeago_mkdocs_material.js"></script>
+<script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});})</script></body>
+</html>
