@@ -661,7 +661,7 @@ As such, it's optional.</p>
 <span class="normal"><a href="#True-4-4">4</a></span>
 <span class="normal"><a href="#True-4-5">5</a></span>
 <span class="normal"><a href="#True-4-6">6</a></span>
-<span class="normal"><a href="#True-4-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="True-4-1" name="True-4-1"></a>openssl<span class="w"> </span>genrsa<span class="w"> </span>-out<span class="w"> </span>my-birth-plan.dev.local.key<span class="w"> </span>-des3<span class="w"> </span><span class="m">2048</span>
+<span class="normal"><a href="#True-4-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="True-4-1" name="True-4-1"></a>openssl<span class="w"> </span>genrsa<span class="w"> </span>-out<span class="w"> </span>demo.dev.local.key<span class="w"> </span>-des3<span class="w"> </span><span class="m">2048</span>
 <a id="True-4-2" name="True-4-2"></a>openssl<span class="w"> </span>req<span class="w"> </span>-new<span class="w"> </span>-key<span class="w"> </span>demo.dev.local.key<span class="w"> </span>-out<span class="w"> </span>demo.dev.local.csr
 <a id="True-4-3" name="True-4-3"></a>openssl<span class="w"> </span>x509<span class="w"> </span>-req<span class="w"> </span>-in<span class="w"> </span>demo.dev.local.csr<span class="w"> </span><span class="se">\</span>
 <a id="True-4-4" name="True-4-4"></a><span class="w">        </span>-CA<span class="w"> </span>../CA.pem<span class="w"> </span>-CAkey<span class="w"> </span>../CA.key<span class="w"> </span>-CAcreateserial<span class="w"> </span><span class="se">\</span>
