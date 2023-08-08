@@ -91,17 +91,17 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://it-journey.tech/blog/category/nodejs/</loc>
+         <lastmod>2023-08-08</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://it-journey.tech/blog/category/personal-project/</loc>
          <lastmod>2023-08-08</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://it-journey.tech/blog/category/dev/</loc>
-         <lastmod>2023-08-08</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://it-journey.tech/blog/category/nodejs/</loc>
          <lastmod>2023-08-08</lastmod>
          <changefreq>daily</changefreq>
     </url>
@@ -116,22 +116,22 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://it-journey.tech/blog/category/ssl/</loc>
-         <lastmod>2023-08-08</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
          <loc>https://it-journey.tech/blog/category/dev-environment/</loc>
          <lastmod>2023-08-08</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://it-journey.tech/blog/category/bare-metal/</loc>
+         <loc>https://it-journey.tech/blog/category/ssl/</loc>
          <lastmod>2023-08-08</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://it-journey.tech/blog/category/hosting/</loc>
+         <lastmod>2023-08-08</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://it-journey.tech/blog/category/bare-metal/</loc>
          <lastmod>2023-08-08</lastmod>
          <changefreq>daily</changefreq>
     </url>
