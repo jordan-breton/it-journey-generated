@@ -2,152 +2,147 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://it-journey.tech/</loc>
-         <lastmod>2023-03-27</lastmod>
+         <lastmod>2023-08-08</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://it-journey.tech/terms-and-conditions/</loc>
-         <lastmod>2023-03-27</lastmod>
+         <lastmod>2023-08-08</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://it-journey.tech/todo/</loc>
-         <lastmod>2023-03-27</lastmod>
+         <lastmod>2023-08-08</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://it-journey.tech/writing/</loc>
-         <lastmod>2023-03-27</lastmod>
+         <lastmod>2023-08-08</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://it-journey.tech/about/</loc>
-         <lastmod>2023-03-27</lastmod>
+         <lastmod>2023-08-08</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://it-journey.tech/about/history/</loc>
-         <lastmod>2023-03-27</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://it-journey.tech/about/roadmap/</loc>
-         <lastmod>2023-03-27</lastmod>
+         <lastmod>2023-08-08</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://it-journey.tech/about/skill-set/</loc>
-         <lastmod>2023-03-27</lastmod>
+         <lastmod>2023-08-08</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://it-journey.tech/blog/</loc>
-         <lastmod>2023-03-27</lastmod>
+         <lastmod>2023-08-08</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://it-journey.tech/blog/2023/02/21/hello-world/</loc>
-         <lastmod>2023-03-27</lastmod>
+         <lastmod>2023-08-08</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://it-journey.tech/blog/2023/03/05/ssl-certificates-in-dev-environment/</loc>
-         <lastmod>2023-03-27</lastmod>
+         <lastmod>2023-08-08</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://it-journey.tech/blog/2023/03/23/uwebsockets-js-the-package-that-deserves-a-greater-popularity/</loc>
-         <lastmod>2023-03-27</lastmod>
+         <lastmod>2023-08-08</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://it-journey.tech/blog/2023/03/24/uws-reverse-proxy-lets-reconcile-uwebsockets-js-with-the-nodejs-ecosystem/</loc>
-         <lastmod>2023-03-27</lastmod>
+         <lastmod>2023-08-08</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://it-journey.tech/blog/2023/02/25/vps-web-hosting-series-bare-metal-setup-from-start-to-end/</loc>
-         <lastmod>2023-03-27</lastmod>
+         <lastmod>2023-08-08</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://it-journey.tech/blog/2023/02/27/vps-web-hosting-series-part-1-installation/</loc>
-         <lastmod>2023-03-27</lastmod>
+         <lastmod>2023-08-08</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://it-journey.tech/blog/2023/02/28/vps-web-hosting-series-part-2-configuration/</loc>
-         <lastmod>2023-03-27</lastmod>
+         <lastmod>2023-08-08</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://it-journey.tech/blog/2023/03/01/vps-web-hosting-series-part-3-maintenance-additional-notes/</loc>
-         <lastmod>2023-03-27</lastmod>
+         <lastmod>2023-08-08</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://it-journey.tech/blog/archive/2023/</loc>
-         <lastmod>2023-03-27</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://it-journey.tech/blog/category/personal-project/</loc>
-         <lastmod>2023-03-27</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://it-journey.tech/blog/category/nodejs/</loc>
-         <lastmod>2023-03-27</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://it-journey.tech/blog/category/dev/</loc>
-         <lastmod>2023-03-27</lastmod>
+         <lastmod>2023-08-08</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://it-journey.tech/blog/category/uwebsocketsjs/</loc>
-         <lastmod>2023-03-27</lastmod>
+         <lastmod>2023-08-08</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://it-journey.tech/blog/category/dev-environment/</loc>
-         <lastmod>2023-03-27</lastmod>
+         <loc>https://it-journey.tech/blog/category/personal-project/</loc>
+         <lastmod>2023-08-08</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://it-journey.tech/blog/category/test-environment/</loc>
-         <lastmod>2023-03-27</lastmod>
+         <loc>https://it-journey.tech/blog/category/dev/</loc>
+         <lastmod>2023-08-08</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://it-journey.tech/blog/category/ssl/</loc>
-         <lastmod>2023-03-27</lastmod>
+         <loc>https://it-journey.tech/blog/category/nodejs/</loc>
+         <lastmod>2023-08-08</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://it-journey.tech/blog/category/sysadmin/</loc>
-         <lastmod>2023-03-27</lastmod>
+         <lastmod>2023-08-08</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://it-journey.tech/blog/category/test-environment/</loc>
+         <lastmod>2023-08-08</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://it-journey.tech/blog/category/ssl/</loc>
+         <lastmod>2023-08-08</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://it-journey.tech/blog/category/dev-environment/</loc>
+         <lastmod>2023-08-08</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://it-journey.tech/blog/category/bare-metal/</loc>
-         <lastmod>2023-03-27</lastmod>
+         <lastmod>2023-08-08</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://it-journey.tech/blog/category/hosting/</loc>
-         <lastmod>2023-03-27</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://it-journey.tech/blog/category/personal/</loc>
-         <lastmod>2023-03-27</lastmod>
+         <lastmod>2023-08-08</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://it-journey.tech/blog/category/meta/</loc>
-         <lastmod>2023-03-27</lastmod>
+         <lastmod>2023-08-08</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://it-journey.tech/blog/category/personal/</loc>
+         <lastmod>2023-08-08</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
